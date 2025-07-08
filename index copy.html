@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome do Site - Presentes Personalizados</title>
+    <link rel="stylesheet" href="css/pag-inicial.css">
+    <!-- Para ícones, você pode usar Font Awesome ou SVGs. Exemplo com Font Awesome: -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+
+<body>
+
+<script type="module">
+        // Import createClient directly from the CDN URL
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        // Your Supabase credentials
+        const supabaseUrl = 'https://crlcdyiuyqgkyeuiahgb.supabase.co'; // Ex: 'https://abcdefghijk.supabase.co'
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4'; // Ex: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+
+        // Initialize the Supabase client
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+        console.log('Supabase client initialized:', supabase);
+    </script>
+
+    <header>
+        <div class="logo">X</div>
+        <div class="site-name">Personalized Gift Shop</div>
+        <div class="header-actions">
+            <form id="search-form">
+                <input type="search" id="search-input" placeholder="Buscar...">
+                <button type="submit" aria-label="Buscar">🔍</button> <!-- Use um ícone SVG ou Font Awesome aqui -->
+            </form>
+            <div class="cart-icon" id="cart-icon-btn" aria-label="Carrinho de Compras">
+                🛒 <!-- Use um ícone SVG ou Font Awesome aqui -->
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><span data-target="home-content" class="nav-link">Tipos de Presentes
+                </span>
+            </li>
+            <li><span data-target="about-content" class="nav-link">
+                   Sobre
+                </span>
+            </li>
+          
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Seção da Página Inicial (Mockup 1) -->
+        <section id="home-content" class="content-section active">
+            <div class="home-column">
+                <h3>Tipos de Presentes</h3>
+                <button class="sub-link-button" data-content-key="datas-especiais"
+                    onclick="window.open('TiposdePresentesPersonalizados.html', '_blank')">
+                    Presentes para Datas Especiais
+                </button>
+                <button class="sub-link-button" data-content-key="corporativos"onclick="window.open('corporativos.html', '_blank')">Presentes Corporativos</button>
+                <button class="sub-link-button" data-content-key="criativos"onclick="window.open('presentescriativos.html', '_blank')">Presentes Criativos</button>
+            </div>
+           <!-- <div class="home-column">
+                <h3>Métodos de Personalização</h3>
+                <button class="sub-link-button" data-content-key="estampas">Estampas e Impressões</button>
+                <button class="sub-link-button" data-content-key="gravura">Gravura e Corte a Laser</button>
+                <button class="sub-link-button" data-content-key="bordados">Bordados e Patchwork</button>
+            </div>-->
+            <div class="home-column">
+                <h3>Dicas e Inspirações</h3>
+                <button class="sub-link-button" data-content-key="tendencias" onclick="window.open('personalizados.html', '_blank')">
+                    Tendências em Presentes Personalizados</button>
+                <button class="sub-link-button" data-content-key="ocasioes"onclick="window.open('DicaseInspirações.html', '_blank')">Presentes para Diferentes Ocasiões</button>
+                <button class="sub-link-button" data-content-key="depoimentos"onclick="window.open('DicaseInspirações.html', '_blank')">Depoimentos e Experiências</button>
+            </div>
+        </section>
+
+
+
+        <!-- Seção de Display de Produto/Conteúdo (Mockup 2) -->
+        <section id="product-display-content" class="content-section">
+            <!-- A div .product-image-placeholder foi removida daqui -->
+            <div class="product-details-area">
+                <h2 id="dynamic-product-title">Título do Conteúdo Dinâmico</h2>
+                <p id="dynamic-product-description">Descrição detalhada do produto ou conteúdo aparecerá aqui. Selecione
+                    um item para ver os detalhes.</p>
+            </div>
+        </section>
+
+        <!-- Seção de Login/Carrinho (Mockup 3) -->
+        <section id="login-content" class="content-section">
+            <div class="login-form-container">
+                <h3>Login</h3>
+                <form id="actual-login-form">
+                    <div>
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div>
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required placeholder="********">
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
+                <div class="login-options">
+                    <button id="btn-nao-tenho-cadastro">Não Possuo Cadastro</button>
+                    <button id="btn-tenho-cadastro">Possuo Cadastro</button>
+                </div>
+
+            </div>
+            <div class="login-purchase-info">
+                <p>← Para realizar a compra</p>
+            </div>
+        </section>
+
+        <!-- Seção Sobre (Simples) -->
+        <section id="about-content" class="content-section">
+            <h2>Sobre Nós</h2>
+            <p>Informações sobre a loja de presentes personalizados. Nossa missão, visão e valores.</p>
+            <p>Bem-vindo à [Nome da Sua Loja]! Mais do que uma simples loja, somos um ateliê de emoções,
+                um lugar onde ideias se transformam em presentes únicos e significativos. Acreditamos que cada presente
+                deve contar uma história,
+                carregar um sentimento e criar uma memória duradoura. É por isso que nos dedicamos com paixão a oferecer
+                uma curadoria especial de itens personalizáveis
+                e a transformar seus momentos mais preciosos em lembranças tangíveis.
+            </p>
+            <h2><strong>Nossa Missão (O que nos move)</strong></h2>
+            <P>Nossa missão é simples, mas poderosa: inspirar conexões e celebrar momentos especiais através de
+                presentes personalizados que tocam o coração.
+                Queremos ser a ponte entre sua intenção de presentear e a alegria de quem recebe, garantindo que cada
+                item seja tão único quanto a pessoa ou
+                a ocasião que ele homenageia. Buscamos facilitar a expressão de afeto, gratidão e apreço, tornando o ato
+                de presentear uma experiência verdadeiramente memorável
+                e pessoal.
+            </P>
+            <h2><strong>Nossa Visão (Onde queremos chegar)</strong></h2>
+            <p>Almejamos ser reconhecidos como o destino preferido para presentes personalizados criativos e de alta
+                qualidade,
+                destacando-nos pela inovação, pelo atendimento excepcional e pela capacidade de materializar as ideias e
+                sentimentos
+                de nossos clientes. Queremos construir uma comunidade onde a personalização seja sinônimo de carinho e
+                exclusividade,
+                expandindo nosso alcance para tocar cada vez mais vidas com a magia de um presente pensado especialmente
+                para alguém.</p>
+            <h2><strong>Nossos Valores (Os pilares que nos sustentam)</strong></h2>
+            <p><strong>Paixão pela Personalização</strong> Amamos o que fazemos! Cada projeto é uma nova oportunidade de
+                criar algo belo e significativo.</p>
+            <p><strong>Qualidade em Primeiro Lugar: </strong>Desde a escolha dos materiais até o acabamento final, nos
+                comprometemos com a excelência para garantir a durabilidade e a beleza de cada presente.</p>
+            <p><strong>Criatividade e Inovação:</strong>Estamos sempre em busca de novas ideias, técnicas e tendências
+                para oferecer opções de personalização que surpreendam e encantem.</p>
+            <p><strong>Foco no Cliente:</strong>Você está no centro de tudo o que fazemos. Nosso objetivo é entender
+                suas necessidades e superar suas expectativas, oferecendo um atendimento atencioso e dedicado.
+            </p>
+            <p><strong>Atenção aos Detalhes:</strong> Acreditamos que são os pequenos detalhes que fazem a grande
+                diferença. Cuidamos de cada aspecto do seu pedido com o máximo de esmero.</p>
+            <p><strong>Celebração de Momentos:</strong> Entendemos a importância de cada ocasião e nos sentimos honrados
+                em fazer parte das suas celebrações, sejam elas grandes ou pequenas.</p>
+            <p><strong>Sustentabilidade (Opcional, mas valorizado):</strong>Buscamos práticas conscientes em nossa
+                produção, desde a escolha de fornecedores até embalagens, visando minimizar nosso impacto ambiental.
+            </p>
+        </section>
+
+
+      
+
+    </main>
+
+
+    
+
+
+    <footer>
+        <p> © 2025 Personalized Gift Shop</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <!-- script src="js/supabaseClient.js"></script -->
+</body>
+
+</html>
