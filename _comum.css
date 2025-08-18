@@ -7,11 +7,10 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color:rgb(237, 239, 241);
     color: #333;
     line-height: 1.6;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding:  0px;
 }
 
 header {
@@ -60,24 +59,22 @@ header {
 }
 
 .logo {
-    font-size: 2em;
-    font-weight: bold;
-    border: 2px solid white;
-    width: 50px;
-    height: 50px;
+    /*font-size: 2em;*/
+    width: 250px;
+    height: 150px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(45deg); /* Para o 'X' parecer um losango */
+    
+  
 }
-.logo span {
+/*.logo span {
     transform: rotate(-45deg);
-}
+}*/
 
 
 .site-name {
-    font-size: 1.8em;
-    font-weight: bold;
+    font-size: 65px;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 
 .header-actions {
@@ -131,4 +128,126 @@ footer {
     background: linear-gradient(to top, #4A90E2, #357ABD); /* Azul do mockup */
     color: white;
     margin-top: 30px;
+}
+
+
+/* ... (todo o seu CSS existente) ... */
+
+
+/* ======================================================= */
+/*         ESTILOS PARA O MODAL DE PRODUTOS                */
+/* ======================================================= */
+
+/* A sobreposição escura que cobre a página inteira */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique na frente de tudo */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Classe para mostrar o modal */
+.modal-overlay:not(.escondido) {
+    opacity: 1;
+}
+
+/* O conteúdo do modal (a caixa branca) */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 800px; /* Largura máxima */
+    max-height: 90vh; /* Altura máxima */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for grande */
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+.modal-overlay:not(.escondido) .modal-content {
+    transform: scale(1);
+}
+
+/* Botão de fechar (X) */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-close:hover {
+    color: #333;
+}
+
+/* Corpo do modal */
+#modal-body {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+}
+
+.modal-image-container {
+    flex: 1;
+    min-width: 250px;
+}
+#modal-product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.modal-info-container {
+    flex: 1.5; /* Faz a área de texto ser um pouco maior */
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-product-name {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+#modal-product-price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+#modal-product-description {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #666;
+    flex-grow: 1; /* Empurra o botão para baixo */
+    margin-bottom: 20px;
+}
+
+/* Botão de adicionar ao carrinho dentro do modal */
+.btn-add-carrinho {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-add-carrinho:hover {
+    background-color: #2ecc71;
 }

@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <div class="logo">X</div>
+       <div class="logo"><img src="imagens/logomarca V3.png" alt=""></div>
         <div class="site-name">Personalized Gift Shop</div>
         <div class="header-actions">
              <form id="search-form" action="resultados.html" method="GET">
@@ -28,16 +28,9 @@
     <nav class="main-nav">
         <ul>
             <li><a href="Sobre" data-target="about-content" class="nav-link">Sobre</a></li>
-            <li><a href="TiposdePresentesPersonalizados.html" 
-                   data-target="home-content" 
-                   class="nav-link active">
-                   Tipos de Presentes Personalizados
-                </a>
-            </li>
-            <li><a href="MétodosdePersonalização.html" data-target="product-display-content"
-                    data-content-source="metodos" class="nav-link">Métodos de Personalização</a></li>
-            <li><a href="DicaseInspirações.html" data-target="product-display-content" data-content-source="dicas"
-                    class="nav-link">Dicas e Inspirações</a></li>
+            
+            
+         
         </ul>
     </nav>
   
@@ -89,13 +82,36 @@
                 <h3>Kit Chocolate <p> Valor:65,00</p></h3> <br> 
               </div>
         </div>
+
+           <div id="product-modal-overlay" class="modal-overlay escondido">
+        <div id="product-modal" class="modal-content">
+            <button id="modal-close-btn" class="modal-close" aria-label="Fechar">&times;</button>
+            <div id="modal-body">
+                <!-- O conteúdo do produto será inserido aqui pelo JavaScript -->
+                <div class="modal-image-container">
+                    <img id="modal-product-image" src="" alt="Imagem do produto">
+                </div>
+                <div class="modal-info-container">
+                    <h2 id="modal-product-name">Nome do Produto</h2>
+                    <p id="modal-product-price">R$ --,--</p>
+                    <p id="modal-product-description">Carregando descrição...</p>
+                    <button id="modal-add-to-cart-btn" class="btn-add-carrinho">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </div>
         
 
     <footer>
         <p> © 2025 Personalized Gift Shop</p>
     </footer>
 
-    <script src="js/script.js"></script>
+     <script src="js/script.js" type="module"></script>
+    <script src="js/modal.js" type="module"></script>
+    <script type="module">
+        import { updateCartIcon } from './js/carrinho.js';
+        updateCartIcon(); // Atualiza o ícone ao carregar a página
+    </script>
 </body>
 
 </html>

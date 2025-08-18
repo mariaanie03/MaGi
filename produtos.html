@@ -12,7 +12,7 @@
 
     <!-- Reutilize seu header -->
     <header>
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">X</a></div>
+        <div class="logo"><img src="imagens/logomarca V3.png" alt=""></div>
         <div class="site-name">Personalized Gift Shop</div>
         <div class="header-actions">
             <form id="search-form" action="resultados.html" method="GET">
@@ -50,7 +50,11 @@
     </footer>
 
     <!-- **IMPORTANTE**: Inclua os mesmos scripts -->
-    <script src="js/script.js"></script>
+  <script src="js/script.js" type="module"></script>
+    <script type="module">
+        import { updateCartIcon } from './js/carrinho.js';
+        updateCartIcon(); // Apenas atualiza o ícone
+    </script>
     <!-- Adicione os outros scripts se precisar deles nesta página também -->
     <!-- 
     <script type="module" src="js/supabaseClient.js"></script>

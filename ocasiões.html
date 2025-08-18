@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <div class="logo">X</div>
+        <div class="logo"><img src="imagens/logomarca V3.png" alt=""></div>
         <div class="site-name">Personalized Gift Shop</div>
         <div class="header-actions">
              <form id="search-form" action="resultados.html" method="GET">
@@ -28,16 +28,7 @@
     <nav class="main-nav">
         <ul>
             <li><a href="Sobre" data-target="about-content" class="nav-link">Sobre</a></li>
-            <li><a href="TiposdePresentesPersonalizados.html" 
-                   data-target="home-content" 
-                   class="nav-link active">
-                   Tipos de Presentes Personalizados
-                </a>
-            </li>
-            <li><a href="MétodosdePersonalização.html" data-target="product-display-content"
-                    data-content-source="metodos" class="nav-link">Métodos de Personalização</a></li>
-            <li><a href="DicaseInspirações.html" data-target="product-display-content" data-content-source="dicas"
-                    class="nav-link">Dicas e Inspirações</a></li>
+            
         </ul>
     </nav>
   
@@ -86,7 +77,11 @@
         <p> © 2025 Personalized Gift Shop</p>
     </footer>
 
-   <script src="js/script.js"></script>
+  <script src="js/script.js" type="module"></script>
+    <script type="module">
+        import { updateCartIcon } from './js/carrinho.js';
+        updateCartIcon(); // Apenas atualiza o ícone
+    </script>
 
 </body>
 

@@ -190,6 +190,7 @@ main {
     border: 1px solid #ccc;
     border-radius: 5px;
     max-width: 400px; /* Limita a largura do form */
+  
 }
 .login-form-container h3 {
     text-align: center;
