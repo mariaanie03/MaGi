@@ -4,121 +4,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Site - Presentes Personalizados</title>
+    <title>Personalized Gift Shop - Presentes Personalizados</title>
     <link rel="stylesheet" href="css/pag-inicial.css">
-    <!-- Para ícones, você pode usar Font Awesome ou SVGs. Exemplo com Font Awesome: -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <style>
+        /* Estilos para a seção Dicas e Inspirações (Home) */
+        .dicas-container {
+            padding: 20px;
+        }
+        
+        .dicas-container h2 {
+            text-align: center;
+            margin: 30px 0;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 2.5em;
+            color: #357ABD;
+        }
+        
+        .quadrados-dicas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .quadro-dica {
+            width: 250px;
+            height: auto;
+            min-height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .quadro-dica:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .quadro-dica img {
+            max-height: 140px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .quadro-dica h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-family: cursive, sans-serif;
+            color: #333;
+        }
+        
+        .quadro-dica p {
+            font-size: 0.9em;
+            text-align: center;
+            line-height: 1.4;
+            color: #666;
+        }
+        
+        .btn-ver-produtos {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-ver-produtos:hover {
+            background-color: #357ABD;
+        }
+    </style>
 </head>
 
 <body>
 
 <script type="module">
-        // Import createClient directly from the CDN URL
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
         window.myCreateSupabaseClient = createClient;
     </script>
 
     <header>
-        <div class="logo"><img src="imagens/logomarca V3.png" alt=""></div>
+        <div class="logo"><img src="imagens/logomarca V3.png" alt="Logo Personalized Gift Shop"></div>
         <div class="site-name">Personalized Gift Shop</div>
         <div class="header-actions">
-            <!-- CÓDIGO CORRIGIDO -->
-<form id="search-form" action="resultados.html" method="GET">
+            <form id="search-form" action="resultados.html" method="GET">
                 <input type="search" id="search-input" name="q" placeholder="Buscar..." required>
                 <button type="submit" aria-label="Buscar">🔍</button>
             </form>
             <div class="cart-icon" id="cart-icon-btn" aria-label="Carrinho de Compras">
-                🛒 <!-- Use um ícone SVG ou Font Awesome aqui -->
+                🛒
             </div>
         </div>
     </header>
 
     <nav class="main-nav">
         <ul>
-            <li><span data-target="home-content" class="nav-link">Home
-                </span>
-            </li>
-            <li><span data-target="about-content" class="nav-link">
-                   Sobre
-                </span>
-            </li>
-                <li><a href="DicaseInspirações.html" data-target="product-display-content" data-content-source="dicas"
-                    class="nav-link">Dicas e Inspirações</a></li>
+            <li><span data-target="home-content" class="nav-link active">Home</span></li>
+            <li><span data-target="about-content" class="nav-link">Sobre</span></li>
+            <li><span data-target="login-content" class="nav-link">Login</span></li>
         </ul>
     </nav>
 
     <main>
-        <!-- Seção da Página Inicial (Mockup 1) -->
+        <!-- Seção Home (Dicas e Inspirações) -->
         <section id="home-content" class="content-section active">
-            <div class="home-column">
-                <h3>Tipos de Presentes</h3>
-                <button class="sub-link-button" data-content-key="datas-especiais"
-                    onclick="window.open('TiposdePresentesPersonalizados.html', '_blank')">
-                    Presentes para Datas Especiais
-                </button>
-                <button class="sub-link-button" data-content-key="corporativos"onclick="window.open('corporativos.html', '_blank')">Presentes Corporativos</button>
-                <button class="sub-link-button" data-content-key="criativos"onclick="window.open('presentescriativos.html', '_blank')">Presentes Criativos</button>
-            </div>
-           <!-- <div class="home-column">
-                <h3>Métodos de Personalização</h3>
-                <button class="sub-link-button" data-content-key="estampas">Estampas e Impressões</button>
-                <button class="sub-link-button" data-content-key="gravura">Gravura e Corte a Laser</button>
-                <button class="sub-link-button" data-content-key="bordados">Bordados e Patchwork</button>
-            </div>-->
-            <div class="home-column">
-                <h3>Dicas e Inspirações</h3>
-                <button class="sub-link-button" data-content-key="tendencias" onclick="window.open('personalizados.html', '_blank')">
-                    Tendências em Presentes Personalizados</button>
-                <button class="sub-link-button" data-content-key="ocasioes"onclick="window.open('ocasiões.html', '_blank')">Presentes para Diferentes Ocasiões</button>
-                <button class="sub-link-button" data-content-key="depoimentos"onclick="window.open('Comentários.html', '_blank')">Comentários</button>
+            <div class="dicas-container">
+                <h2>Inspire-se com Nossas Ideias</h2>
+
+                <!-- Linha 1 -->
+                <div class="quadrados-dicas">
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=canecas'">
+                        <img src="imagens/th.jpg" alt="Caneca com Constelação">
+                        <h3>Caneca Mapa das Estrelas</h3>
+                        <p>Grave a constelação de uma data especial. Um presente celestial e único para quem você ama.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=almofadas'">
+                        <img src="imagens/almofadas2.0.png" alt="Almofada com Caligrafia">
+                        <h3>Almofada com Caligrafia</h3>
+                        <p>Transforme um bilhete especial em uma estampa ou bordado. O afeto em forma de decoração.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=churrasco'">
+                        <img src="imagens/kit_Churrasco2.0.png" alt="Kit Churrasco com Monograma">
+                        <h3>Kit Churrasco do Mestre</h3>
+                        <p>Grave as iniciais ou um brasão divertido nos utensílios. Perfeito para o mestre da grelha.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=garrafas'">
+                        <img src="imagens/garrafinhas2.0.png" alt="Garrafinha com Mapa de Viagem">
+                        <h3>Garrafinha Mapa de Viagem</h3>
+                        <p>Estampe o mapa de uma cidade que marcou história. Hidratação com um toque de aventura.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=diarios'">
+                        <img src="imagens/diario2.0.png" alt="Diário de Viagens Personalizado">
+                        <h3>Diário de Viagens</h3>
+                        <p>Crie uma capa com uma foto ou frase que inspire novas jornadas. O companheiro ideal para viajantes.</p>
+                    </div>
+                </div>
+
+                <!-- Linha 2 -->
+                <div class="quadrados-dicas">
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=pulseiras'">
+                        <img src="imagens/pulseira2.0.png" alt="Pulseira com Coordenadas">
+                        <h3>Pulseira com Coordenadas</h3>
+                        <p>Grave as coordenadas de um lugar importante. Um segredo elegante e cheio de significado.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=vinho'">
+                        <img src="imagens/kit-vinho-2.0.png" alt="Kit Vinho Personalizado">
+                        <h3>Kit Vinho para Amantes</h3>
+                        <p>Personalize a caixa de madeira com uma mensagem ou data especial. Um brinde à exclusividade.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=camisetas'">
+                        <img src="imagens/camisetão2.0-removebg-preview (1).png" alt="Camisetão com Estampa de Pet">
+                        <h3>Camisetão Estampa Pet</h3>
+                        <p>Transforme a foto do seu pet em uma estampa artística. Estilo e amor em uma só peça.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=cafe'">
+                        <img src="imagens/kit-cafe-2.0.png" alt="Kit Café da Manhã Personalizado">
+                        <h3>Kit Café com Piada Interna</h3>
+                        <p>Monte uma cesta com uma caneca personalizada com aquela frase que só vocês entendem.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=acessorios'">
+                        <img src="imagens/cabelo2.0.png" alt="Acessórios de Cabelo Bordados">
+                        <h3>Acessórios com Iniciais</h3>
+                        <p>Um toque de elegância em presilhas ou faixas com as iniciais bordadas. Charme e exclusividade.</p>
+                    </div>
+                </div>
+
+                <!-- Linha 3 -->
+                <div class="quadrados-dicas">
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=cinema'">
+                        <img src="imagens/presente_criativo_1.png" alt="Kit Noite de Cinema">
+                        <h3>Kit Maratona de Séries</h3>
+                        <p>Personalize almofada, balde de pipoca e caneca com o tema do filme ou série favorita.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=spa'">
+                        <img src="imagens/cesta spa.png" alt="Cesta SPA em Casa">
+                        <h3>Cesta "SPA em Casa"</h3>
+                        <p>Monte um kit relaxante com toalhas de rosto bordadas com o nome ou um símbolo de paz.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=quadros'">
+                        <img src="imagens/quadrus.png" alt="Quadro com Definição de Nome">
+                        <h3>Quadro "Definição do Nome"</h3>
+                        <p>Crie uma arte de dicionário divertida, definindo a pessoa com suas melhores qualidades.</p>
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=jardinagem'">
+                        <img src="imagens/vazo pranta.png" alt="Kit Jardinagem Personalizado">
+                        <h3>Kit Jardinagem Criativo</h3>
+                        <p>Personalize um vaso de cerâmica com uma frase como "Cultivando Amor" para os parents de plantas.</p>
+                   
+                    </div>
+                    <div class="quadro-dica" onclick="window.location.href='produtos-categoria.html?categoria=meias'">
+                        <img src="imagens/meias.png" alt="Meias com Rostos">
+                        <h3>Meias Divertidas com Rostos</h3>
+                        <p>Estampe o rosto de amigos ou do pet em meias coloridas. Um presente para arrancar muitas risadas.</p>
+                       
+                    </div>
+                </div>
             </div>
         </section>
 
-       
-        <!-- Seção de Display de Produto/Conteúdo (Mockup 2) -->
-        <section id="product-display-content" class="content-section">
-            <!-- A div .product-image-placeholder foi removida daqui -->
-            <div class="product-details-area">
-                <h2 id="dynamic-product-title">Título do Conteúdo Dinâmico</h2>
-                <p id="dynamic-product-description">Descrição detalhada do produto ou conteúdo aparecerá aqui. Selecione
-                    um item para ver os detalhes.</p>
-            </div>
-
-
-        </section>
-
-        <!-- Seção de Login/Carrinho (Mockup 3) -->
-           <!-- Seção de Login/Carrinho (MODIFICADA PARA CADASTRO) -->
-   <!-- Seção de Login/Carrinho (SIMPLIFICADA) -->
-<section id="login-content" class="content-section">
-    <div class="login-form-container">
-        <h3>Login</h3>
-        
-       <form id="actual-login-form" method="post">
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required placeholder="********">
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
-
-        <div class="login-options" style="margin-top: 15px;">
-            <!-- O BOTÃO AGORA É UM LINK DIRETO PARA A PÁGINA DE CADASTRO -->
-            <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>.</p>
-        </div>
-
-    </div>
-   
-</section>
-        <!-- Seção Sobre (Simples) -->
+        <!-- Seção Sobre -->
         <section id="about-content" class="content-section">
             <h2>Sobre Nós</h2>
             <p>Informações sobre a loja de presentes personalizados. Nossa missão, visão e valores.</p>
-            <p>Bem-vindo à [Nome da Sua Loja]! Mais do que uma simples loja, somos um ateliê de emoções,
+            <p>Bem-vindo à Personalized Gift Shop! Mais do que uma simples loja, somos um ateliê de emoções,
                 um lugar onde ideias se transformam em presentes únicos e significativos. Acreditamos que cada presente
                 deve contar uma história,
                 carregar um sentimento e criar uma memória duradoura. É por isso que nos dedicamos com paixão a oferecer
@@ -162,10 +264,28 @@
             </p>
         </section>
 
+        <!-- Seção de Login -->
+        <section id="login-content" class="content-section">
+            <div class="login-form-container">
+                <h3>Login</h3>
+                
+                <form id="actual-login-form" method="post">
+                    <div>
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div>
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required placeholder="********">
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
 
-      
-
-
+                <div class="login-options" style="margin-top: 15px;">
+                    <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>

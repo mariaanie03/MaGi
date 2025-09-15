@@ -10,7 +10,7 @@ body {
     background-color:rgb(237, 239, 241);
     color: #333;
     line-height: 1.6;
-    padding: 0 50px;
+    padding:  0px;
 }
 
 header {
@@ -59,24 +59,22 @@ header {
 }
 
 .logo {
-    font-size: 2em;
-    font-weight: bold;
-    border: 2px solid white;
-    width: 50px;
-    height: 50px;
+    /*font-size: 2em;*/
+    width: 250px;
+    height: 150px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(45deg); /* Para o 'X' parecer um losango */
+    
+  
 }
-.logo span {
+/*.logo span {
     transform: rotate(-45deg);
-}
+}*/
 
 
 .site-name {
-    font-size: 1.8em;
-    font-weight: bold;
+    font-size: 65px;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 
 .header-actions {
