@@ -19,13 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg', descricao: 'Um kit pensado para celebrar momentos, com itens personalizáveis.' },
         { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png', descricao: 'A combinação perfeita de chocolates deliciosos e um item personalizado.' },
         
-        { id: 5, nome: 'Caneca Mágica', preco: 'R$ 45,00', imagem: 'imagens/th-removebg-preview.png', descricao: 'Surpreenda com esta caneca que revela sua imagem com líquido quente.' },
-        { id: 6, nome: 'Garrafinha ', preco: 'R$ 55,90', imagem: 'imagens/imagens/garrafinhas2.0.png', descricao: '' },
-        { id: 7, nome: 'Almofada', preco: 'R$ 48,00', imagem: 'imagens/imagens/almofadas2.0.png', descricao: '' },
-        { id: 8, nome: 'Kit Diamemn ', preco: 'R$ 110,00', imagem: 'imagens/Kit_Diamemn2.0.png', descricao: '' },
-        { id: 9, nome: 'Kit Vinho', preco: 'R$ 124,50', imagem: 'imagens/kit-vinho-2.0.png', descricao: '' },
-        { id: 10, nome: 'Kit Churrasco ', preco: 'R$ 99,99', imagem: 'imagens/kit_Churrasco2.0.png', descricao: '' },
-        { id: 11, nome: 'Pulseira ', preco: 'R$ 85,00', imagem: 'imagens/pulseira2.0.png', descricao: '' },
+        { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png', descricao: '' },
+        { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,90', imagem: 'imagens/almofadas-removebg-preview.png', descricao: '' },
+        { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', descricao: '' },
+        { id: 8, nome: 'Almofada Aleatória ', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png', descricao: '' },
+        
+        { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: '' },
+        { id: 10, nome: 'Avental de Churrasco Personalizado ', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: '' },
+        { id: 11, nome: 'Tábua de Carne com Gravura ', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: '' },
+        
         { id: 12, nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', descricao: '' },
         { id: 13, nome: 'Diario ', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png', descricao: '' },
         { id: 14, nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png', descricao: '' },
@@ -232,15 +234,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             ],
             'almofadas': [
-                { id: 4, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png' },
-                { id: 5, nome: 'Almofada de Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png'},
-                { id: 6, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png' },
-                { id: 6, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' }
+                { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png' },
+                { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png'},
+                { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png' },
+                { id: 8, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' }
             ],
             'churrasco': [
-                { id: 7, nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-premium.jpg', descricao: 'Kit completo para churrasco' },
-                { id: 8, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-churrasco.jpg', descricao: 'Avental com nome personalizado' },
-                { id: 9, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-carne.jpg', descricao: 'Tábua de carne com gravura personalizada' }
+                { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: '' },
+                { id: 10, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: '' },
+                { id: 11, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: '' }
             ]
         };
 
@@ -289,23 +291,23 @@ async function inserirProdutosIniciais() {
         { nome: 'Caneca Mágica', preco: 'R$ 45,00', imagem: 'imagens/th.png', categoria: 'canecas' },
         { nome: 'Caneca :3', preco: 'R$ 45,90', imagem: 'imagens/caneca-foto.jpg',  categoria: 'canecas' },
 
-
-        { nome: 'Kit Val', preco: 'R$ 80,00', imagem: 'imagens/cesta-basica-do-amor-laina-editavel-6-removebg-preview.png', categoria: 'kits' },
-        { nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png',  categoria: 'kits' },
+        { nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png',  categoria: 'almofadas' },
+        { nome: 'Almofada Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png',  categoria: 'almofadas' },
+        { nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', categoria: 'almofadas' },
+        { nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png',  categoria: 'almofadas' },
       
-        { nome: 'Garrafinha', preco: 'R$ 55,90', imagem: 'imagens/garrafinhas2.0.png',  categoria: 'garrafas' },
-        { nome: 'Almofada', preco: 'R$ 48,00', imagem: 'imagens/almofadas2.0.png',  categoria: 'almofadas' },
-        { nome: 'Kit Diamemn', preco: 'R$ 110,00', imagem: 'imagens/Kit_Diamemn2.0.png',  categoria: 'kits' },
-        { nome: 'Kit Vinho', preco: 'R$ 124,50', imagem: 'imagens/kit-vinho-2.0.png', categoria: 'vinho' },
-        { nome: 'Kit Churrasco', preco: 'R$ 99,99', imagem: 'imagens/kit_Churrasco2.0.png', categoria: 'churrasco' },
+        { nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', categoria: 'churrasco' },
+        { nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-churrasco.jpg',  categoria: 'churrasco' },
+        { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', categoria: 'churrasco' },
+       
         { nome: 'Pulseira', preco: 'R$ 85,00', imagem: 'imagens/pulseira2.0.png', categoria: 'acessorios' },
         { nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', categoria: 'cafe' },
         { nome: 'Diario', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png',  categoria: 'diarios' },
         { nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png',  categoria: 'acessorios' },
      
-        { nome: 'Almofada Coração Personalizada', preco: 'R$ 79,90', imagem: 'imagens/almofada-coracao.jpg',  categoria: 'almofadas' },
-        { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-carne.jpg', categoria: 'churrasco' },
-        { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-carne.jpg', categoria: 'churrasco' }
+        
+        
+        
 
     ];
 
