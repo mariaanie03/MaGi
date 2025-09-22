@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos por Categoria - Personalized Gift Shop</title>
+    <link rel="stylesheet" href="css/pag-produtos-por-categoria.css">
+    
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img src="imagens/logomarca V3.png" alt="Logo Personalized Gift Shop"></div>
+        <div class="site-name">Personalized Gift Shop</div>
+        <div class="header-actions">
+            <form id="search-form" action="resultados.html" method="GET">
+                <input type="search" id="search-input" name="q" placeholder="Buscar..." required>
+                <button type="submit" aria-label="Buscar">🔍</button>
+            </form>
+            <div class="cart-icon" id="cart-icon-btn" aria-label="Carrinho de Compras">🛒</div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="index.html#about-content" class="nav-link">Sobre</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="categoria-container">
+            <h1 id="categoria-titulo" class="categoria-titulo">Carregando...</h1>
+            
+            <div id="produtos-grid" class="produtos-grid">
+                <!-- Os produtos serão carregados via JavaScript -->
+            </div>
+            
+            <a href="index.html" class="voltar-link">← Voltar para a Página Inicial</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Personalized Gift Shop</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

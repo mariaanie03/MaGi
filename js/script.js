@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- BASE DE DADOS LOCAL DE PRODUTOS ---
     const todosOsProdutos = [
         { id: 1, nome: 'Caneca Branca', preco: 'R$ 25,00', imagem: 'imagens/caneca-removebg-preview.png', descricao: 'Caneca de cerâmica de alta qualidade, perfeita para personalizar com sua foto ou frase favorita.' },
-        { id: 2, nome: 'Camisetão', preco: 'R$ 55,00', imagem: 'imagens/camisetão2.0-removebg-preview (1).png', descricao: 'Camiseta 100% algodão, confortável e estilosa. Disponível em várias cores.' },
-        { id: 3, nome: 'Kit Val', preco: 'R$ 80,00', imagem: 'imagens/cesta-basica-do-amor-laina-editavel-6-removebg-preview.png', descricao: 'Um kit pensado para celebrar momentos, com itens personalizáveis.' },
-        { id: 4, nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png', descricao: 'A combinação perfeita de chocolates deliciosos e um item personalizado.' },
+        { id: 2, nome: 'Caneca Termica', preco: 'R$ 69,60', imagem: 'imagens/canecas-removebg-preview.png', descricao: 'Camiseta 100% algodão, confortável e estilosa. Disponível em várias cores.' },
+        { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg', descricao: 'Um kit pensado para celebrar momentos, com itens personalizáveis.' },
+        { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png', descricao: 'A combinação perfeita de chocolates deliciosos e um item personalizado.' },
+        
         { id: 5, nome: 'Caneca Mágica', preco: 'R$ 45,00', imagem: 'imagens/th-removebg-preview.png', descricao: 'Surpreenda com esta caneca que revela sua imagem com líquido quente.' },
         { id: 6, nome: 'Garrafinha ', preco: 'R$ 55,90', imagem: 'imagens/imagens/garrafinhas2.0.png', descricao: '' },
         { id: 7, nome: 'Almofada', preco: 'R$ 48,00', imagem: 'imagens/imagens/almofadas2.0.png', descricao: '' },
@@ -217,4 +218,107 @@ document.addEventListener('DOMContentLoaded', function() {
              document.getElementById('detalhe-produto-container').innerHTML = '<h1>Erro!</h1><p>Nenhum ID de produto foi especificado na URL.</p>';
         }
     }
+
+    // --- LÓGICA DA PÁGINA DE CATEGORIA DE PRODUTOS (produtos-categoria.html) ---
+    if (document.getElementById('produtos-grid') && document.getElementById('categoria-titulo')) {
+        console.log("Lógica da PÁGINA DE CATEGORIA DE PRODUTOS sendo executada.");
+
+        const produtosPorCategoria = {
+            'canecas': [
+                { id: 1, nome: 'Caneca Branca', preco: 'R$ 45,90', imagem: 'imagens/caneca-removebg-preview.png' },
+                { id: 2, nome: 'Caneca Térmica', preco: 'R$ 69,90', imagem: 'imagens/canecas-removebg-preview.png'},
+                { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg' },
+                { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png' } 
+                
+            ],
+            'almofadas': [
+                { id: 4, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png' },
+                { id: 5, nome: 'Almofada de Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png'},
+                { id: 6, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png' },
+                { id: 6, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' }
+            ],
+            'churrasco': [
+                { id: 7, nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-premium.jpg', descricao: 'Kit completo para churrasco' },
+                { id: 8, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-churrasco.jpg', descricao: 'Avental com nome personalizado' },
+                { id: 9, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-carne.jpg', descricao: 'Tábua de carne com gravura personalizada' }
+            ]
+        };
+
+        window.verDetalhes = function(idProduto) {
+            window.location.href = `produtos.html?id=${idProduto}`;
+        }
+
+        function carregarProdutos() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoria = urlParams.get('categoria');
+            
+            const titulo = document.getElementById('categoria-titulo');
+            const grid = document.getElementById('produtos-grid');
+            
+            if (categoria && produtosPorCategoria[categoria]) {
+                titulo.textContent = `Produtos de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
+                
+                grid.innerHTML = produtosPorCategoria[categoria].map(produto => `
+                    <div class="produto-card">
+                        <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/250x200?text=Imagem+Indisponível'">
+                        <h3>${produto.nome}</h3>
+                        <p class="preco">${produto.preco}</p>
+                        <p>${produto.descricao}</p>
+                        <button class="btn-ver-detalhes" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
+                    </div>
+                `).join('');
+            } else {
+                titulo.textContent = 'Categoria não encontrada';
+                grid.innerHTML = '<p>Nenhum produto encontrado para esta categoria.</p>';
+            }
+        }
+
+        carregarProdutos();
+    }
 });
+
+// CÓDIGO TEMPORÁRIO PARA INSERIR PRODUTOS
+
+async function inserirProdutosIniciais() {
+    // Pega a instância do Supabase que já foi criada no topo do seu script
+    const supabase = window.myCreateSupabaseClient('https://crlcdyiuyqgkyeuiahgb.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4');
+
+    const listaDeProdutosParaInserir = [
+        { nome: 'Caneca Branca', preco: 'R$ 25,00', imagem: 'imagens/caneca-removebg-preview.png', categoria: 'canecas' },
+        { nome: 'Caneca Térmica', preco: 'R$ 55,00', imagem: 'imagens/canecas-removebg-preview.png', categoria: 'canecas' },
+        { nome: 'Caneca Mágica', preco: 'R$ 45,00', imagem: 'imagens/th.png', categoria: 'canecas' },
+        { nome: 'Caneca :3', preco: 'R$ 45,90', imagem: 'imagens/caneca-foto.jpg',  categoria: 'canecas' },
+
+
+        { nome: 'Kit Val', preco: 'R$ 80,00', imagem: 'imagens/cesta-basica-do-amor-laina-editavel-6-removebg-preview.png', categoria: 'kits' },
+        { nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png',  categoria: 'kits' },
+      
+        { nome: 'Garrafinha', preco: 'R$ 55,90', imagem: 'imagens/garrafinhas2.0.png',  categoria: 'garrafas' },
+        { nome: 'Almofada', preco: 'R$ 48,00', imagem: 'imagens/almofadas2.0.png',  categoria: 'almofadas' },
+        { nome: 'Kit Diamemn', preco: 'R$ 110,00', imagem: 'imagens/Kit_Diamemn2.0.png',  categoria: 'kits' },
+        { nome: 'Kit Vinho', preco: 'R$ 124,50', imagem: 'imagens/kit-vinho-2.0.png', categoria: 'vinho' },
+        { nome: 'Kit Churrasco', preco: 'R$ 99,99', imagem: 'imagens/kit_Churrasco2.0.png', categoria: 'churrasco' },
+        { nome: 'Pulseira', preco: 'R$ 85,00', imagem: 'imagens/pulseira2.0.png', categoria: 'acessorios' },
+        { nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', categoria: 'cafe' },
+        { nome: 'Diario', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png',  categoria: 'diarios' },
+        { nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png',  categoria: 'acessorios' },
+     
+        { nome: 'Almofada Coração Personalizada', preco: 'R$ 79,90', imagem: 'imagens/almofada-coracao.jpg',  categoria: 'almofadas' },
+        { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-carne.jpg', categoria: 'churrasco' },
+        { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-carne.jpg', categoria: 'churrasco' }
+
+    ];
+
+    console.log("Tentando inserir produtos...");
+    const { data, error } = await supabase
+        .from('produtos')
+        .insert(listaDeProdutosParaInserir);
+
+    if (error) {
+        console.error('Erro ao inserir produtos:', error);
+        alert('Falha ao inserir produtos no banco de dados! Veja o console para detalhes.');
+    } else {
+        console.log('Produtos inseridos com sucesso:', data);
+        alert('Produtos cadastrados no banco de dados com sucesso!');
+    }
+}
