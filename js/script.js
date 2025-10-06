@@ -15,23 +15,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- BASE DE DADOS LOCAL DE PRODUTOS ---
     const todosOsProdutos = [
         { id: 1, nome: 'Caneca Branca', preco: 'R$ 25,00', imagem: 'imagens/caneca-removebg-preview.png', descricao: 'Caneca de cerâmica de alta qualidade, perfeita para personalizar com sua foto ou frase favorita.' },
-        { id: 2, nome: 'Caneca Termica', preco: 'R$ 69,60', imagem: 'imagens/canecas-removebg-preview.png', descricao: 'Camiseta 100% algodão, confortável e estilosa. Disponível em várias cores.' },
+        { id: 2, nome: 'Caneca Termica', preco: 'R$ 69,60', imagem: 'imagens/canecas-removebg-preview.png', descricao: 'Caneca térmica para manter sua bebida na temperatura ideal.' },
         { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg', descricao: 'Um kit pensado para celebrar momentos, com itens personalizáveis.' },
         { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png', descricao: 'A combinação perfeita de chocolates deliciosos e um item personalizado.' },
+        
         
         { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png', descricao: '' },
         { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,90', imagem: 'imagens/almofadas-removebg-preview.png', descricao: '' },
         { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', descricao: '' },
         { id: 8, nome: 'Almofada Aleatória ', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png', descricao: '' },
         
-        { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: '' },
+        { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: '' },
         { id: 10, nome: 'Avental de Churrasco Personalizado ', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: '' },
         { id: 11, nome: 'Tábua de Carne com Gravura ', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: '' },
-        
+        { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png'},
+
         { id: 12, nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', descricao: '' },
+
         { id: 13, nome: 'Diario ', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png', descricao: '' },
         { id: 14, nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png', descricao: '' },
-        { id: 15, nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png', descricao: '' }
+        { id: 15, nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png', descricao: '' },
+        { id: 16, nome: 'Camisetão Estampa Pet', preco: 'R$ 89,90', imagem: 'imagens/camisetão2.0-removebg-preview (1).png', descricao: 'Transforme a foto do seu pet em uma estampa artística.' }
     ];
 
     // ===================================================================
@@ -158,6 +162,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- LÓGICA DA PÁGINA DE RESULTADOS (resultados.html) ---
     if (document.getElementById('resultados-grid')) {
         console.log("Lógica da PÁGINA DE RESULTADOS sendo executada.");
+
+        // Dicionário de correções. Chave: termo errado, Valor: termo correto
+        const correcoesDeBusca = {
+            'camiseta': 'camisetão',
+            'caneca magica': 'caneca mágica',
+            'almofada coracao': 'almofada de coração'
+        };
+
+        // Função para remover acentos de uma string
+        function removerAcentos(texto) {
+            if (!texto) return "";
+            return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
         
         const resultsGrid = document.getElementById('resultados-grid');
         const resultsTitle = document.getElementById('search-results-title');
@@ -169,9 +186,39 @@ document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('search-input');
             if (searchInput) { searchInput.value = decodedSearchTerm; }
 
-            const resultados = todosOsProdutos.filter(produto => 
-                produto.nome.toLowerCase().includes(decodedSearchTerm.toLowerCase())
-            );
+            // Normaliza o termo de busca (sem acento e em minúsculas)
+            const termoBuscaNormalizado = removerAcentos(decodedSearchTerm.toLowerCase());
+            let termoFinalDeBusca = termoBuscaNormalizado; // Termo que será usado para a busca
+
+            // --- LÓGICA DE CORREÇÃO AUTOMÁTICA (NOVIDADE) ---
+            // Pega as correções já aplicadas nesta sessão
+            let correcoesAplicadas = JSON.parse(sessionStorage.getItem('correcoesAplicadas')) || {};
+            
+            // Verifica se o termo buscado tem uma correção e se ela AINDA NÃO foi aplicada nesta sessão
+            if (correcoesDeBusca[termoBuscaNormalizado] && !correcoesAplicadas[termoBuscaNormalizado]) {
+                const termoCorrigido = correcoesDeBusca[termoBuscaNormalizado];
+                termoFinalDeBusca = removerAcentos(termoCorrigido.toLowerCase()); // Usa o termo corrigido para a busca
+
+                // Mostra uma mensagem para o usuário informando da correção
+                const correcaoMsg = document.createElement('p');
+                correcaoMsg.style.textAlign = 'center';
+                correcaoMsg.style.fontSize = '0.9em';
+                correcaoMsg.style.color = '#555';
+                correcaoMsg.innerHTML = `Busca corrigida de "<em>${decodedSearchTerm}</em>" para "<strong>${termoCorrigido}</strong>".`;
+                resultsTitle.parentNode.insertBefore(correcaoMsg, resultsTitle.nextSibling);
+
+                // Marca esta correção como "aplicada" para esta sessão
+                correcoesAplicadas[termoBuscaNormalizado] = true;
+                sessionStorage.setItem('correcoesAplicadas', JSON.stringify(correcoesAplicadas));
+            }
+            // --- FIM DA LÓGICA DE CORREÇÃO ---
+
+            const resultados = todosOsProdutos.filter(produto => {
+                // Normaliza o nome do produto (sem acento e em minúsculas)
+                const nomeProdutoNormalizado = removerAcentos(produto.nome.toLowerCase());
+                // Verifica se o nome do produto normalizado contém o termo de busca final
+                return nomeProdutoNormalizado.includes(termoFinalDeBusca);
+            });
 
             resultsTitle.textContent = `${resultados.length} resultado(s) para: "${decodedSearchTerm}"`;
             
@@ -240,9 +287,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 { id: 8, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' }
             ],
             'churrasco': [
-                { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: '' },
-                { id: 10, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: '' },
-                { id: 11, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: '' }
+                { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png' },
+                { id: 10, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png' },
+                { id: 11, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png'},
+                { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png'}
             ]
         };
 
@@ -278,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         carregarProdutos();
     }
 });
-
 // CÓDIGO TEMPORÁRIO PARA INSERIR PRODUTOS
 
 async function inserirProdutosIniciais() {
@@ -296,10 +343,12 @@ async function inserirProdutosIniciais() {
         { nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', categoria: 'almofadas' },
         { nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png',  categoria: 'almofadas' },
       
-        { nome: 'Kit Churrasco Premium', preco: 'R$ 199,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', categoria: 'churrasco' },
+        { nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', categoria: 'churrasco' },
         { nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-churrasco.jpg',  categoria: 'churrasco' },
         { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', categoria: 'churrasco' },
-       
+        { nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png', categoria: 'churrasco' },
+
+        
         { nome: 'Pulseira', preco: 'R$ 85,00', imagem: 'imagens/pulseira2.0.png', categoria: 'acessorios' },
         { nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', categoria: 'cafe' },
         { nome: 'Diario', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png',  categoria: 'diarios' },
