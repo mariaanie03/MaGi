@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize seu Produto - Personalized Gift Shop</title>
+    <link rel="stylesheet" href="css/pag-metodos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img src="imagens/logomarca V3.png" alt="Logo Personalized Gift Shop"></div>
+        <div class="site-name">Personalized Gift Shop</div>
+        <div class="header-actions">
+            <form action="resultados.html" method="GET">
+                <input type="search" name="q" placeholder="Buscar..." required>
+                <button type="submit" aria-label="Buscar">🔍</button>
+            </form>
+            <div class="cart-icon">🛒</div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html" class="nav-link">Início</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="metodos-container">
+            <h1 id="titulo-personalizacao">Personalize seu Produto</h1>
+            
+            <!-- SEÇÃO INFORMATIVA SOBRE MÉTODOS -->
+            <div class="info-metodos">
+                <div class="metodo-item">
+                    <h2>Gravação a Laser</h2>
+                    <p>Processo de alta precisão que cria um design permanente e elegante, ideal para madeira, metal e couro.</p>
+                </div>
+                <div class="metodo-item">
+                    <h2>Estampa (Sublimação)</h2>
+                    <p>Transfere imagens coloridas para o produto com cores vibrantes que não desbotam, perfeita para canecas e tecidos.</p>
+                </div>
+                <div class="metodo-item">
+                    <h2>Bordado</h2>
+                    <p>Técnica clássica que utiliza linhas para criar um design em relevo, adicionando textura e um toque artesanal.</p>
+                </div>
+            </div>
+
+            <!-- NOVA CENTRAL DE PERSONALIZAÇÃO -->
+            <div class="central-personalizacao">
+                <h2>Comece a Personalizar</h2>
+
+                <!-- Opção 1: Crie sua Própria Arte -->
+                <fieldset class="area-personalizacao">
+                    <legend>Opção 1: Crie ou Envie sua Própria Arte</legend>
+                    <p>Faça o upload de uma imagem ou desenhe diretamente em nosso editor.</p>
+                    <div class="ferramentas-criacao">
+                        <label for="upload-arte" class="btn-upload">📤 Enviar Imagem</label>
+                        <input type="file" id="upload-arte" accept="image/*" class="escondido">
+                        <button id="abrir-editor-desenho">🎨 Abrir Editor de Desenho</button>
+                    </div>
+                </fieldset>
+
+                <!-- Opção 2: Escolha uma Arte Pronta -->
+                <fieldset class="area-personalizacao">
+                    <legend>Opção 2: Escolha uma de Nossas Artes</legend>
+                    <p>Selecione um dos nossos designs exclusivos para aplicar ao seu produto.</p>
+                    <div id="galeria-artes">
+                        <img src="imagens/arte-pronta1.png" alt="Arte Pronta 1" class="arte-galeria" data-arte-id="1">
+                        <img src="imagens/arte-pronta2.png" alt="Arte Pronta 2" class="arte-galeria" data-arte-id="2">
+                        <img src="imagens/arte-pronta3.png" alt="Arte Pronta 3" class="arte-galeria" data-arte-id="3">
+                        <img src="imagens/arte-pronta4.png" alt="Arte Pronta 4" class="arte-galeria" data-arte-id="4">
+                    </div>
+                </fieldset>
+
+                <!-- Opção 3: Customize uma Arte Pronta -->
+                <fieldset class="area-personalizacao">
+                    <legend>Opção 3: Adicione um Toque Pessoal</legend>
+                    <p>Escolha uma arte da galeria acima e adicione um nome ou uma frase.</p>
+                    <div class="customizacao-final">
+                        <div id="preview-arte-selecionada">
+                            <p>Selecione uma arte da Opção 2</p>
+                        </div>
+                        <div class="campo-texto">
+                            <label for="texto-adicional">Adicionar Texto:</label>
+                            <input type="text" id="texto-adicional" placeholder="Digite seu texto aqui...">
+                            <button id="btn-aplicar-texto">Aplicar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            
+            <button id="btn-confirmar-personalizacao">Confirmar Personalização e Adicionar ao Carrinho</button>
+            <a href="produtos.html" id="voltar-produto-link" class="voltar-link">← Voltar para o Produto</a>
+        </div>
+    </main>
+
+    <footer>
+        <!-- O conteúdo do footer permanece o mesmo -->
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="index.html?section=about">Sobre Nós</a></li>
+                    <li><a href="termos.html">Termos e Condições</a></li>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Atendimento</h4>
+                <ul>
+                    <li><a href="mailto:contato@personalizedgiftshop.com.br">contato@personalizedgiftshop.com.br</a></li>
+                    <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+                    <li>Seg. à Sex. das 9h às 18h</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Redes Sociais</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Pinterest">PI</a>
+                    <a href="#" aria-label="Tik Tok">TK</a>
+                    <a href="#" aria-label="Twitter">X</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Receba novidades e promoções!</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <button type="submit">Assinar</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <p>Formas de Pagamento:</p>
+                <span>PIX</span> <span>VISA</span> <span>MASTERCARD</span> <span>ELO</span>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Personalized Gift Shop - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

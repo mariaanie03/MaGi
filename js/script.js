@@ -16,26 +16,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const todosOsProdutos = [
         { id: 1, nome: 'Caneca Branca', preco: 'R$ 25,00', imagem: 'imagens/caneca-removebg-preview.png', descricao: 'Caneca de cerâmica de alta qualidade, perfeita para personalizar com sua foto ou frase favorita.' },
         { id: 2, nome: 'Caneca Termica', preco: 'R$ 69,60', imagem: 'imagens/canecas-removebg-preview.png', descricao: 'Caneca térmica para manter sua bebida na temperatura ideal.' },
-        { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg', descricao: 'Um kit pensado para celebrar momentos, com itens personalizáveis.' },
-        { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png', descricao: 'A combinação perfeita de chocolates deliciosos e um item personalizado.' },
-        
-        
-        { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png', descricao: '' },
-        { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,90', imagem: 'imagens/almofadas-removebg-preview.png', descricao: '' },
-        { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', descricao: '' },
-        { id: 8, nome: 'Almofada Aleatória ', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png', descricao: '' },
-        
-        { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: '' },
-        { id: 10, nome: 'Avental de Churrasco Personalizado ', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: '' },
-        { id: 11, nome: 'Tábua de Carne com Gravura ', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: '' },
-        { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png'},
-
-        { id: 12, nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', descricao: '' },
-
-        { id: 13, nome: 'Diario ', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png', descricao: '' },
-        { id: 14, nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png', descricao: '' },
-        { id: 15, nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png', descricao: '' },
-        { id: 16, nome: 'Camisetão Estampa Pet', preco: 'R$ 89,90', imagem: 'imagens/camisetão2.0-removebg-preview (1).png', descricao: 'Transforme a foto do seu pet em uma estampa artística.' }
+        { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg', descricao: 'Surpreenda alguém com uma caneca que revela a imagem quando aquecida.' },
+        { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png', descricao: 'Uma caneca divertida para alegrar o seu café da manhã.' },
+        { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png', descricao: 'Almofada confortável com estampa personalizável para decorar seu ambiente.' },
+        { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,90', imagem: 'imagens/almofadas-removebg-preview.png', descricao: 'Demonstre seu carinho com uma almofada em formato de coração.' },
+        { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', descricao: 'Ideal para abraçar ou usar como apoio, com sua foto preferida.' },
+        { id: 8, nome: 'Almofada Aleatória ', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png', descricao: 'Uma almofada com design único para presentear.' },
+        { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: 'O kit completo para o mestre churrasqueiro, com itens gravados a laser.' },
+        { id: 10, nome: 'Avental de Churrasco Personalizado ', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: 'Avental resistente com nome ou frase bordada.' },
+        { id: 11, nome: 'Tábua de Carne com Gravura ', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: 'Tábua de madeira de lei com gravação a laser personalizada.' },
+        { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png', descricao: 'Maleta com 17 peças essenciais para um churrasco perfeito.'},
+        { id: 13, nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', descricao: 'Comece o dia bem com este kit de café da manhã personalizável.' },
+        { id: 14, nome: 'Diario ', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png', descricao: 'Registre suas memórias em um diário com capa exclusiva.' },
+        { id: 15, nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png', descricao: 'Um toque de elegância com acessórios de cabelo bordados com suas iniciais.' },
+        { id: 16, nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png', descricao: 'A combinação perfeita de deliciosos chocolates e uma embalagem personalizada.' },
+        { id: 17, nome: 'Camisetão Estampa Pet', preco: 'R$ 89,90', imagem: 'imagens/camisetão2.0-removebg-preview (1).png', descricao: 'Transforme a foto do seu pet em uma estampa artística e estilosa.' }
     ];
 
     // ===================================================================
@@ -78,8 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('section') === 'login') {
+        const sectionParam = urlParams.get('section');
+
+        if (sectionParam === 'login') {
             showSection('login-content');
+        } else if (sectionParam === 'about') {
+            showSection('about-content');
         } else {
             showSection('home-content'); // Comportamento padrão
         }
@@ -100,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (registrationForm) {
         console.log("Lógica da PÁGINA DE CADASTRO sendo executada.");
 
-        // Lógica para buscar CEP
         const cepInput = document.getElementById('cep');
         if (cepInput) {
             cepInput.addEventListener('blur', function() {
@@ -121,10 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Lógica para enviar o formulário para o Supabase
         registrationForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-
             const nomeCompleto = document.getElementById('nome-completo').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('senha').value;
@@ -163,14 +159,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('resultados-grid')) {
         console.log("Lógica da PÁGINA DE RESULTADOS sendo executada.");
 
-        // Dicionário de correções. Chave: termo errado, Valor: termo correto
         const correcoesDeBusca = {
             'camiseta': 'camisetão',
             'caneca magica': 'caneca mágica',
             'almofada coracao': 'almofada de coração'
         };
 
-        // Função para remover acentos de uma string
         function removerAcentos(texto) {
             if (!texto) return "";
             return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -186,20 +180,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('search-input');
             if (searchInput) { searchInput.value = decodedSearchTerm; }
 
-            // Normaliza o termo de busca (sem acento e em minúsculas)
             const termoBuscaNormalizado = removerAcentos(decodedSearchTerm.toLowerCase());
-            let termoFinalDeBusca = termoBuscaNormalizado; // Termo que será usado para a busca
+            let termoFinalDeBusca = termoBuscaNormalizado; 
 
-            // --- LÓGICA DE CORREÇÃO AUTOMÁTICA (NOVIDADE) ---
-            // Pega as correções já aplicadas nesta sessão
             let correcoesAplicadas = JSON.parse(sessionStorage.getItem('correcoesAplicadas')) || {};
             
-            // Verifica se o termo buscado tem uma correção e se ela AINDA NÃO foi aplicada nesta sessão
             if (correcoesDeBusca[termoBuscaNormalizado] && !correcoesAplicadas[termoBuscaNormalizado]) {
                 const termoCorrigido = correcoesDeBusca[termoBuscaNormalizado];
-                termoFinalDeBusca = removerAcentos(termoCorrigido.toLowerCase()); // Usa o termo corrigido para a busca
+                termoFinalDeBusca = removerAcentos(termoCorrigido.toLowerCase()); 
 
-                // Mostra uma mensagem para o usuário informando da correção
                 const correcaoMsg = document.createElement('p');
                 correcaoMsg.style.textAlign = 'center';
                 correcaoMsg.style.fontSize = '0.9em';
@@ -207,16 +196,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 correcaoMsg.innerHTML = `Busca corrigida de "<em>${decodedSearchTerm}</em>" para "<strong>${termoCorrigido}</strong>".`;
                 resultsTitle.parentNode.insertBefore(correcaoMsg, resultsTitle.nextSibling);
 
-                // Marca esta correção como "aplicada" para esta sessão
                 correcoesAplicadas[termoBuscaNormalizado] = true;
                 sessionStorage.setItem('correcoesAplicadas', JSON.stringify(correcoesAplicadas));
             }
-            // --- FIM DA LÓGICA DE CORREÇÃO ---
 
             const resultados = todosOsProdutos.filter(produto => {
-                // Normaliza o nome do produto (sem acento e em minúsculas)
                 const nomeProdutoNormalizado = removerAcentos(produto.nome.toLowerCase());
-                // Verifica se o nome do produto normalizado contém o termo de busca final
                 return nomeProdutoNormalizado.includes(termoFinalDeBusca);
             });
 
@@ -250,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const produtoIdString = urlParams.get('id');
 
         if (produtoIdString) {
-            const produtoId = parseInt(produtoIdString);
+            const produtoId = parseInt(produtoIdString, 10);
             const produtoEncontrado = todosOsProdutos.find(p => p.id === produtoId);
 
             if (produtoEncontrado) {
@@ -260,6 +245,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('produto-nome').textContent = produtoEncontrado.nome;
                 document.getElementById('produto-preco').textContent = produtoEncontrado.preco;
                 document.getElementById('produto-descricao').textContent = produtoEncontrado.descricao;
+
+                const linkPersonalizar = document.getElementById('btn-personalizar');
+                if (linkPersonalizar) {
+                    linkPersonalizar.href = `metodos-personalizacao.html?id=${produtoEncontrado.id}`;
+                }
             } else {
                 document.getElementById('detalhe-produto-container').innerHTML = '<h1>Produto não encontrado!</h1>';
             }
@@ -268,30 +258,95 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // --- LÓGICA DA PÁGINA metodos-personalizacao.html ---
+    if (document.querySelector('.metodos-container')) {
+        console.log("Lógica da PÁGINA DE MÉTODOS DE PERSONALIZAÇÃO sendo executada.");
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const produtoIdString = urlParams.get('id');
+        const tituloEl = document.getElementById('titulo-personalizacao');
+        const linkVoltar = document.getElementById('voltar-produto-link');
+
+        if (produtoIdString) {
+            const produtoId = parseInt(produtoIdString, 10);
+            const produtoEncontrado = todosOsProdutos.find(p => p.id === produtoId);
+
+            if (produtoEncontrado && tituloEl) {
+                tituloEl.textContent = `Personalize sua: ${produtoEncontrado.nome}`;
+            }
+
+            if (linkVoltar) {
+                linkVoltar.href = `produtos.html?id=${produtoId}`;
+            }
+        }
+        
+        // --- LÓGICA DA NOVA CENTRAL DE PERSONALIZAÇÃO ---
+        const galeriaImagens = document.querySelectorAll('.arte-galeria');
+        const previewContainer = document.getElementById('preview-arte-selecionada');
+
+        galeriaImagens.forEach(img => {
+            img.addEventListener('click', function() {
+                // Remove a seleção de todas as outras imagens
+                galeriaImagens.forEach(i => i.classList.remove('selecionada'));
+                // Adiciona a seleção à imagem clicada
+                this.classList.add('selecionada');
+                
+                // Atualiza a área de preview na Opção 3
+                if(previewContainer) {
+                    previewContainer.innerHTML = `<img src="${this.src}" alt="Arte selecionada">`;
+                }
+            });
+        });
+
+        // Simulação dos botões de ação
+        const uploadInput = document.getElementById('upload-arte');
+        if (uploadInput) {
+            uploadInput.addEventListener('change', () => {
+                if(uploadInput.files.length > 0) {
+                     alert(`Arquivo "${uploadInput.files[0].name}" selecionado!\n(Função de upload em desenvolvimento)`);
+                }
+            });
+        }
+        
+        const btnEditor = document.getElementById('abrir-editor-desenho');
+        if (btnEditor) {
+            btnEditor.addEventListener('click', () => {
+                alert('Abrindo editor de desenho...\n(Funcionalidade em desenvolvimento)');
+            });
+        }
+
+        const btnAplicarTexto = document.getElementById('btn-aplicar-texto');
+        if (btnAplicarTexto) {
+            btnAplicarTexto.addEventListener('click', () => {
+                const texto = document.getElementById('texto-adicional').value;
+                if (!document.querySelector('.arte-galeria.selecionada')) {
+                    alert('Por favor, selecione uma arte da galeria primeiro!');
+                    return;
+                }
+                if (texto) {
+                    alert(`Texto "${texto}" aplicado à arte!\n(Funcionalidade em desenvolvimento)`);
+                } else {
+                    alert('Por favor, digite um texto para aplicar.');
+                }
+            });
+        }
+        
+        const btnConfirmar = document.getElementById('btn-confirmar-personalizacao');
+        if (btnConfirmar) {
+            btnConfirmar.addEventListener('click', () => {
+                alert('Personalização confirmada e produto adicionado ao carrinho!\n(Funcionalidade em desenvolvimento)');
+            });
+        }
+    }
+
     // --- LÓGICA DA PÁGINA DE CATEGORIA DE PRODUTOS (produtos-categoria.html) ---
     if (document.getElementById('produtos-grid') && document.getElementById('categoria-titulo')) {
         console.log("Lógica da PÁGINA DE CATEGORIA DE PRODUTOS sendo executada.");
 
         const produtosPorCategoria = {
-            'canecas': [
-                { id: 1, nome: 'Caneca Branca', preco: 'R$ 45,90', imagem: 'imagens/caneca-removebg-preview.png' },
-                { id: 2, nome: 'Caneca Térmica', preco: 'R$ 69,90', imagem: 'imagens/canecas-removebg-preview.png'},
-                { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg' },
-                { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png' } 
-                
-            ],
-            'almofadas': [
-                { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png' },
-                { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png'},
-                { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png' },
-                { id: 8, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' }
-            ],
-            'churrasco': [
-                { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png' },
-                { id: 10, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png' },
-                { id: 11, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png'},
-                { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png'}
-            ]
+            'canecas': [ { id: 1, nome: 'Caneca Branca', preco: 'R$ 45,90', imagem: 'imagens/caneca-removebg-preview.png' }, { id: 2, nome: 'Caneca Térmica', preco: 'R$ 69,90', imagem: 'imagens/canecas-removebg-preview.png'}, { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg' }, { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png' } ],
+            'almofadas': [ { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png' }, { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png'}, { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png' }, { id: 8, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' } ],
+            'churrasco': [ { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png' }, { id: 10, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png' }, { id: 11, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png'}, { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png'} ]
         };
 
         window.verDetalhes = function(idProduto) {
@@ -301,19 +356,16 @@ document.addEventListener('DOMContentLoaded', function() {
         function carregarProdutos() {
             const urlParams = new URLSearchParams(window.location.search);
             const categoria = urlParams.get('categoria');
-            
             const titulo = document.getElementById('categoria-titulo');
             const grid = document.getElementById('produtos-grid');
             
             if (categoria && produtosPorCategoria[categoria]) {
                 titulo.textContent = `Produtos de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
-                
                 grid.innerHTML = produtosPorCategoria[categoria].map(produto => `
                     <div class="produto-card">
                         <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/250x200?text=Imagem+Indisponível'">
                         <h3>${produto.nome}</h3>
                         <p class="preco">${produto.preco}</p>
-                        <p>${produto.descricao}</p>
                         <button class="btn-ver-detalhes" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
                     </div>
                 `).join('');
@@ -322,54 +374,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 grid.innerHTML = '<p>Nenhum produto encontrado para esta categoria.</p>';
             }
         }
-
         carregarProdutos();
     }
 });
-// CÓDIGO TEMPORÁRIO PARA INSERIR PRODUTOS
-
-async function inserirProdutosIniciais() {
-    // Pega a instância do Supabase que já foi criada no topo do seu script
-    const supabase = window.myCreateSupabaseClient('https://crlcdyiuyqgkyeuiahgb.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4');
-
-    const listaDeProdutosParaInserir = [
-        { nome: 'Caneca Branca', preco: 'R$ 25,00', imagem: 'imagens/caneca-removebg-preview.png', categoria: 'canecas' },
-        { nome: 'Caneca Térmica', preco: 'R$ 55,00', imagem: 'imagens/canecas-removebg-preview.png', categoria: 'canecas' },
-        { nome: 'Caneca Mágica', preco: 'R$ 45,00', imagem: 'imagens/th.png', categoria: 'canecas' },
-        { nome: 'Caneca :3', preco: 'R$ 45,90', imagem: 'imagens/caneca-foto.jpg',  categoria: 'canecas' },
-
-        { nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png',  categoria: 'almofadas' },
-        { nome: 'Almofada Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png',  categoria: 'almofadas' },
-        { nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', categoria: 'almofadas' },
-        { nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png',  categoria: 'almofadas' },
-      
-        { nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', categoria: 'churrasco' },
-        { nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-churrasco.jpg',  categoria: 'churrasco' },
-        { nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', categoria: 'churrasco' },
-        { nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png', categoria: 'churrasco' },
-
-        
-        { nome: 'Pulseira', preco: 'R$ 85,00', imagem: 'imagens/pulseira2.0.png', categoria: 'acessorios' },
-        { nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', categoria: 'cafe' },
-        { nome: 'Diario', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png',  categoria: 'diarios' },
-        { nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png',  categoria: 'acessorios' },
-     
-        
-        
-        
-
-    ];
-
-    console.log("Tentando inserir produtos...");
-    const { data, error } = await supabase
-        .from('produtos')
-        .insert(listaDeProdutosParaInserir);
-
-    if (error) {
-        console.error('Erro ao inserir produtos:', error);
-        alert('Falha ao inserir produtos no banco de dados! Veja o console para detalhes.');
-    } else {
-        console.log('Produtos inseridos com sucesso:', data);
-        alert('Produtos cadastrados no banco de dados com sucesso!');
-    }
-}
