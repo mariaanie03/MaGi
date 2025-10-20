@@ -376,4 +376,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         carregarProdutos();
     }
+
+    // Adicionar em um script global ou em cada página
+document.addEventListener('DOMContentLoaded', () => {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const totalItens = carrinho.reduce((acc, item) => acc + item.quantity, 0);
+    const contador = document.getElementById('cart-count');
+    if (contador) {
+        contador.textContent = totalItens;
+        contador.style.display = totalItens > 0 ? 'inline-block' : 'none';
+    }})
 });
