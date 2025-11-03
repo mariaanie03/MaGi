@@ -2,36 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Sistema iniciado. Analisando a página...");
 
     // --- CONFIGURAÇÃO DO SUPABASE ---
+    // Esta conexão será usada por todas as funções que precisam do banco de dados.
     const SUPABASE_URL = 'https://crlcdyiuyqgkyeuiahgb.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJI soberba NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4';
     let supabase = null;
     if (window.myCreateSupabaseClient) {
         supabase = window.myCreateSupabaseClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        console.log("Cliente Supabase inicializado.");
+        console.log("Cliente Supabase inicializado a partir de script.js.");
     } else {
         console.error("Biblioteca Supabase não encontrada. Certifique-se de que o script de inicialização do Supabase está presente no HTML.");
     }
-
-    // --- BASE DE DADOS LOCAL DE PRODUTOS ---
-    const todosOsProdutos = [
-        { id: 1, nome: 'Caneca Branca', preco: 'R$ 25,00', imagem: 'imagens/caneca-removebg-preview.png', descricao: 'Caneca de cerâmica de alta qualidade, perfeita para personalizar com sua foto ou frase favorita.' },
-        { id: 2, nome: 'Caneca Termica', preco: 'R$ 69,60', imagem: 'imagens/canecas-removebg-preview.png', descricao: 'Caneca térmica para manter sua bebida na temperatura ideal.' },
-        { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg', descricao: 'Surpreenda alguém com uma caneca que revela a imagem quando aquecida.' },
-        { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png', descricao: 'Uma caneca divertida para alegrar o seu café da manhã.' },
-        { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png', descricao: 'Almofada confortável com estampa personalizável para decorar seu ambiente.' },
-        { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,90', imagem: 'imagens/almofadas-removebg-preview.png', descricao: 'Demonstre seu carinho com uma almofada em formato de coração.' },
-        { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png', descricao: 'Ideal para abraçar ou usar como apoio, com sua foto preferida.' },
-        { id: 8, nome: 'Almofada Aleatória ', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png', descricao: 'Uma almofada com design único para presentear.' },
-        { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png', descricao: 'O kit completo para o mestre churrasqueiro, com itens gravados a laser.' },
-        { id: 10, nome: 'Avental de Churrasco Personalizado ', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png', descricao: 'Avental resistente com nome ou frase bordada.' },
-        { id: 11, nome: 'Tábua de Carne com Gravura ', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png', descricao: 'Tábua de madeira de lei com gravação a laser personalizada.' },
-        { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png', descricao: 'Maleta com 17 peças essenciais para um churrasco perfeito.'},
-        { id: 13, nome: 'Kit Café', preco: 'R$ 50,00', imagem: 'imagens/kit-cafe-2.0.png', descricao: 'Comece o dia bem com este kit de café da manhã personalizável.' },
-        { id: 14, nome: 'Diario ', preco: 'R$ 36,00', imagem: 'imagens/diario2.0.png', descricao: 'Registre suas memórias em um diário com capa exclusiva.' },
-        { id: 15, nome: 'Acessório de Cabelo', preco: 'R$ 43,70', imagem: 'imagens/cabelo2.0.png', descricao: 'Um toque de elegância com acessórios de cabelo bordados com suas iniciais.' },
-        { id: 16, nome: 'Kit Chocolate', preco: 'R$ 65,00', imagem: 'imagens/presente_criativo_1-removebg-preview.png', descricao: 'A combinação perfeita de deliciosos chocolates e uma embalagem personalizada.' },
-        { id: 17, nome: 'Camisetão Estampa Pet', preco: 'R$ 89,90', imagem: 'imagens/camisetão2.0-removebg-preview (1).png', descricao: 'Transforme a foto do seu pet em uma estampa artística e estilosa.' }
-    ];
+    
+    // NOTA: O array 'todosOsProdutos' foi REMOVIDO. Os dados agora vêm do banco de dados.
 
     // ===================================================================
     // --- LÓGICA GLOBAL (FUNCIONA EM TODAS AS PÁGINAS) ---
@@ -40,19 +22,21 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cartIconButton) {
         cartIconButton.addEventListener('click', () => {
             if (document.getElementById('home-content')) {
-                // Se já estiver na página inicial, apenas mostra a seção de login
                 const contentSections = document.querySelectorAll('.content-section');
                 const loginSection = document.getElementById('login-content');
-                
                 contentSections.forEach(section => section.classList.remove('active'));
                 if (loginSection) {
                     loginSection.classList.add('active');
                 }
             } else {
-                // Se estiver em outra página, redireciona para a home com um parâmetro para mostrar o login
                 window.location.href = 'index.html?section=login';
             }
         });
+    }
+
+    // Função para navegar para os detalhes do produto (usada em várias páginas)
+    window.verDetalhes = function(idProduto) {
+        window.location.href = `produtos.html?id=${idProduto}`;
     }
 
     // ===================================================================
@@ -97,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- LÓGICA DA PÁGINA DE CADASTRO (cadastro.html) ---
     const registrationForm = document.getElementById('registration-form');
     if (registrationForm) {
-        console.log("Lógica da PÁGINA DE CADASTRO sendo executada.");
+        console.log("Lógica da PÁGINA DE CADASTRO (CEP Helper) sendo executada.");
 
         const cepInput = document.getElementById('cep');
         if (cepInput) {
@@ -118,272 +102,179 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
-
-        registrationForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const nomeCompleto = document.getElementById('nome-completo').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('senha').value;
-            const confirmPassword = document.getElementById('confirmar-senha').value;
-            const termosAceitos = document.getElementById('termos').checked;
-
-            if (password !== confirmPassword) {
-                alert('As senhas não coincidem.'); return;
-            }
-            if (!termosAceitos) {
-                alert('Você precisa aceitar os Termos e Condições.'); return;
-            }
-            if (!supabase) {
-                alert('Erro na conexão com o sistema. Tente novamente mais tarde.'); return;
-            }
-
-            try {
-                const { error } = await supabase.auth.signUp({
-                    email: email, password: password,
-                    options: { data: { full_name: nomeCompleto } }
-                });
-
-                if (error) { throw error; }
-
-                alert('Cadastro realizado com sucesso! Verifique seu e-mail para confirmar a conta.');
-                window.location.href = 'index.html';
-
-            } catch (error) {
-                console.error('Erro no cadastro:', error.message);
-                alert('Erro ao realizar o cadastro: ' + error.message);
-            }
-        });
     }
 
     // --- LÓGICA DA PÁGINA DE RESULTADOS (resultados.html) ---
     if (document.getElementById('resultados-grid')) {
-        console.log("Lógica da PÁGINA DE RESULTADOS sendo executada.");
+        console.log("Lógica da PÁGINA DE RESULTADOS (com Supabase) sendo executada.");
 
-        const correcoesDeBusca = {
-            'camiseta': 'camisetão',
-            'caneca magica': 'caneca mágica',
-            'almofada coracao': 'almofada de coração'
-        };
+        async function buscarProdutos() {
+            if (!supabase) return;
+            const resultsGrid = document.getElementById('resultados-grid');
+            const resultsTitle = document.getElementById('search-results-title');
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('q');
 
-        function removerAcentos(texto) {
-            if (!texto) return "";
-            return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        }
-        
-        const resultsGrid = document.getElementById('resultados-grid');
-        const resultsTitle = document.getElementById('search-results-title');
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchTerm = urlParams.get('q');
-
-        if (searchTerm) {
-            const decodedSearchTerm = decodeURIComponent(searchTerm);
-            const searchInput = document.getElementById('search-input');
-            if (searchInput) { searchInput.value = decodedSearchTerm; }
-
-            const termoBuscaNormalizado = removerAcentos(decodedSearchTerm.toLowerCase());
-            let termoFinalDeBusca = termoBuscaNormalizado; 
-
-            let correcoesAplicadas = JSON.parse(sessionStorage.getItem('correcoesAplicadas')) || {};
+            if (!searchTerm) {
+                resultsTitle.textContent = "Faça uma busca para ver os resultados.";
+                return;
+            }
             
-            if (correcoesDeBusca[termoBuscaNormalizado] && !correcoesAplicadas[termoBuscaNormalizado]) {
-                const termoCorrigido = correcoesDeBusca[termoBuscaNormalizado];
-                termoFinalDeBusca = removerAcentos(termoCorrigido.toLowerCase()); 
+            resultsTitle.textContent = `Buscando por: "${searchTerm}"...`;
+            
+            const { data: resultados, error } = await supabase
+                .from('produtos')
+                .select('*')
+                .ilike('nome', `%${searchTerm}%`);
 
-                const correcaoMsg = document.createElement('p');
-                correcaoMsg.style.textAlign = 'center';
-                correcaoMsg.style.fontSize = '0.9em';
-                correcaoMsg.style.color = '#555';
-                correcaoMsg.innerHTML = `Busca corrigida de "<em>${decodedSearchTerm}</em>" para "<strong>${termoCorrigido}</strong>".`;
-                resultsTitle.parentNode.insertBefore(correcaoMsg, resultsTitle.nextSibling);
-
-                correcoesAplicadas[termoBuscaNormalizado] = true;
-                sessionStorage.setItem('correcoesAplicadas', JSON.stringify(correcoesAplicadas));
+            if (error) {
+                resultsTitle.textContent = 'Erro ao realizar a busca.';
+                console.error(error);
+                return;
             }
 
-            const resultados = todosOsProdutos.filter(produto => {
-                const nomeProdutoNormalizado = removerAcentos(produto.nome.toLowerCase());
-                return nomeProdutoNormalizado.includes(termoFinalDeBusca);
-            });
-
-            resultsTitle.textContent = `${resultados.length} resultado(s) para: "${decodedSearchTerm}"`;
-            
+            resultsTitle.textContent = `${resultados.length} resultado(s) para: "${searchTerm}"`;
             if (resultados.length > 0) {
-                resultados.forEach(produto => {
-                    const produtoCard = document.createElement('div');
-                    produtoCard.className = 'quadro';
-                    produtoCard.innerHTML = `
-                        <img src="${produto.imagem}" alt="${produto.nome}">
+                resultsGrid.innerHTML = resultados.map(produto => `
+                    <div class="quadro">
+                        <img src="${produto.imagem_url}" alt="${produto.nome}">
                         <h3>${produto.nome}</h3>
-                        <p class="preco">${produto.preco}</p>
-                        <a href="produtos.html?id=${produto.id}" class="btn-ver-produto">Ver Produto</a>
-                    `;
-                    resultsGrid.appendChild(produtoCard);
-                });
+                        <p class="preco">R$ ${produto.preco}</p>
+                        <a href="#" onclick="verDetalhes('${produto.id_produtos}'); return false;" class="btn-ver-produto">Ver Produto</a>
+                    </div>
+                `).join('');
             } else {
                 resultsGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Nenhum produto encontrado.</p>';
             }
-        } else {
-            resultsTitle.textContent = "Faça uma busca para ver os resultados.";
         }
+        setTimeout(buscarProdutos, 100);
     }
 
     // --- LÓGICA DA PÁGINA DE DETALHES DO PRODUTO (produto.html) ---
     if (document.getElementById('detalhe-produto-container')) {
-        console.log("Lógica da PÁGINA DE PRODUTO sendo executada.");
+        console.log("Lógica da PÁGINA DE PRODUTO (com Supabase) sendo executada.");
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const produtoIdString = urlParams.get('id');
+        async function carregarDetalhesDoProduto() {
+            if (!supabase) return;
 
-        if (produtoIdString) {
-            const produtoId = parseInt(produtoIdString, 10);
-            const produtoEncontrado = todosOsProdutos.find(p => p.id === produtoId);
+            const urlParams = new URLSearchParams(window.location.search);
+            const produtoId = urlParams.get('id');
 
-            if (produtoEncontrado) {
-                document.title = produtoEncontrado.nome;
-                document.getElementById('produto-imagem').src = produtoEncontrado.imagem;
-                document.getElementById('produto-imagem').alt = produtoEncontrado.nome;
-                document.getElementById('produto-nome').textContent = produtoEncontrado.nome;
-                document.getElementById('produto-preco').textContent = produtoEncontrado.preco;
-                document.getElementById('produto-descricao').textContent = produtoEncontrado.descricao;
-
-                const linkPersonalizar = document.getElementById('btn-personalizar');
-                if (linkPersonalizar) {
-                    linkPersonalizar.href = `metodos-personalizacao.html?id=${produtoEncontrado.id}`;
-                }
-            } else {
-                document.getElementById('detalhe-produto-container').innerHTML = '<h1>Produto não encontrado!</h1>';
+            if (!produtoId) {
+                document.getElementById('detalhe-produto-container').innerHTML = '<h1>Erro!</h1><p>Nenhum ID de produto foi especificado na URL.</p>';
+                return;
             }
-        } else {
-             document.getElementById('detalhe-produto-container').innerHTML = '<h1>Erro!</h1><p>Nenhum ID de produto foi especificado na URL.</p>';
+
+            const { data: produto, error } = await supabase
+                .from('produtos')
+                .select('*')
+                .eq('id_produtos', produtoId)
+                .single();
+
+            if (error || !produto) {
+                console.error('Erro ao buscar produto:', error);
+                document.getElementById('detalhe-produto-container').innerHTML = '<h1>Produto não encontrado!</h1>';
+                return;
+            }
+            
+            document.title = produto.nome;
+            document.getElementById('produto-imagem').src = produto.imagem_url;
+            document.getElementById('produto-imagem').alt = produto.nome;
+            document.getElementById('produto-nome').textContent = produto.nome;
+            document.getElementById('produto-preco').textContent = `R$ ${produto.preco}`;
+            document.getElementById('produto-descricao').textContent = produto.descricao;
+
+            const linkPersonalizar = document.getElementById('btn-personalizar');
+            if (linkPersonalizar) {
+                linkPersonalizar.href = `metodos-personalizacao.html?id=${produto.id_produtos}`;
+            }
         }
+        setTimeout(carregarDetalhesDoProduto, 100);
     }
 
     // --- LÓGICA DA PÁGINA metodos-personalizacao.html ---
     if (document.querySelector('.metodos-container')) {
-        console.log("Lógica da PÁGINA DE MÉTODOS DE PERSONALIZAÇÃO sendo executada.");
+        console.log("Lógica da PÁGINA DE MÉTODOS DE PERSONALIZAÇÃO (com Supabase) sendo executada.");
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const produtoIdString = urlParams.get('id');
-        const tituloEl = document.getElementById('titulo-personalizacao');
-        const linkVoltar = document.getElementById('voltar-produto-link');
-
-        if (produtoIdString) {
-            const produtoId = parseInt(produtoIdString, 10);
-            const produtoEncontrado = todosOsProdutos.find(p => p.id === produtoId);
-
-            if (produtoEncontrado && tituloEl) {
-                tituloEl.textContent = `Personalize sua: ${produtoEncontrado.nome}`;
-            }
-
-            if (linkVoltar) {
-                linkVoltar.href = `produtos.html?id=${produtoId}`;
-            }
-        }
-        
-        // --- LÓGICA DA NOVA CENTRAL DE PERSONALIZAÇÃO ---
-        const galeriaImagens = document.querySelectorAll('.arte-galeria');
-        const previewContainer = document.getElementById('preview-arte-selecionada');
-
-        galeriaImagens.forEach(img => {
-            img.addEventListener('click', function() {
-                // Remove a seleção de todas as outras imagens
-                galeriaImagens.forEach(i => i.classList.remove('selecionada'));
-                // Adiciona a seleção à imagem clicada
-                this.classList.add('selecionada');
+        async function carregarInfoPersonalizacao() {
+            if (!supabase) return;
+            const urlParams = new URLSearchParams(window.location.search);
+            const produtoId = urlParams.get('id');
+            const tituloEl = document.getElementById('titulo-personalizacao');
+            
+            if (produtoId) {
+                const { data: produto, error } = await supabase
+                    .from('produtos')
+                    .select('nome')
+                    .eq('id_produtos', produtoId)
+                    .single();
                 
-                // Atualiza a área de preview na Opção 3
-                if(previewContainer) {
-                    previewContainer.innerHTML = `<img src="${this.src}" alt="Arte selecionada">`;
+                if (produto && tituloEl) {
+                    tituloEl.textContent = `Personalize sua: ${produto.nome}`;
                 }
-            });
-        });
-
-        // Simulação dos botões de ação
-        const uploadInput = document.getElementById('upload-arte');
-        if (uploadInput) {
-            uploadInput.addEventListener('change', () => {
-                if(uploadInput.files.length > 0) {
-                     alert(`Arquivo "${uploadInput.files[0].name}" selecionado!\n(Função de upload em desenvolvimento)`);
-                }
-            });
+            }
         }
-        
-        const btnEditor = document.getElementById('abrir-editor-desenho');
-        if (btnEditor) {
-            btnEditor.addEventListener('click', () => {
-                alert('Abrindo editor de desenho...\n(Funcionalidade em desenvolvimento)');
-            });
-        }
-
-        const btnAplicarTexto = document.getElementById('btn-aplicar-texto');
-        if (btnAplicarTexto) {
-            btnAplicarTexto.addEventListener('click', () => {
-                const texto = document.getElementById('texto-adicional').value;
-                if (!document.querySelector('.arte-galeria.selecionada')) {
-                    alert('Por favor, selecione uma arte da galeria primeiro!');
-                    return;
-                }
-                if (texto) {
-                    alert(`Texto "${texto}" aplicado à arte!\n(Funcionalidade em desenvolvimento)`);
-                } else {
-                    alert('Por favor, digite um texto para aplicar.');
-                }
-            });
-        }
-        
-        const btnConfirmar = document.getElementById('btn-confirmar-personalizacao');
-        if (btnConfirmar) {
-            btnConfirmar.addEventListener('click', () => {
-                alert('Personalização confirmada e produto adicionado ao carrinho!\n(Funcionalidade em desenvolvimento)');
-            });
-        }
+        setTimeout(carregarInfoPersonalizacao, 100);
     }
 
     // --- LÓGICA DA PÁGINA DE CATEGORIA DE PRODUTOS (produtos-categoria.html) ---
     if (document.getElementById('produtos-grid') && document.getElementById('categoria-titulo')) {
-        console.log("Lógica da PÁGINA DE CATEGORIA DE PRODUTOS sendo executada.");
+        console.log("Lógica da PÁGINA DE CATEGORIA DE PRODUTOS (com Supabase) sendo executada.");
 
-        const produtosPorCategoria = {
-            'canecas': [ { id: 1, nome: 'Caneca Branca', preco: 'R$ 45,90', imagem: 'imagens/caneca-removebg-preview.png' }, { id: 2, nome: 'Caneca Térmica', preco: 'R$ 69,90', imagem: 'imagens/canecas-removebg-preview.png'}, { id: 3, nome: 'Caneca Mágica', preco: 'R$ 55,00', imagem: 'imagens/th.jpg' }, { id: 4, nome: 'Caneca :3', preco: 'R$ 55,00', imagem: 'imagens/caneca-removebg-preview (1).png' } ],
-            'almofadas': [ { id: 5, nome: 'Almofada :)', preco: 'R$ 79,90', imagem: 'imagens/almofadas2.0.png' }, { id: 6, nome: 'Almofada de Coração', preco: 'R$ 65,00', imagem: 'imagens/almofadas-removebg-preview.png'}, { id: 7, nome: 'Almofada Comprida', preco: 'R$ 89,90', imagem: 'imagens/ALMOFADAAMOFOTO-0-removebg-preview.png' }, { id: 8, nome: 'Almofada Aleatória', preco: 'R$ 89,90', imagem: 'imagens/almofada-removebg-preview.png' } ],
-            'churrasco': [ { id: 9, nome: 'Kit Churrasco Premium', preco: 'R$ 499,90', imagem: 'imagens/kit-churrasco-removebg-preview.png' }, { id: 10, nome: 'Avental de Churrasco Personalizado', preco: 'R$ 89,90', imagem: 'imagens/avental-removebg-preview.png' }, { id: 11, nome: 'Tábua de Carne com Gravura', preco: 'R$ 120,00', imagem: 'imagens/tabua-removebg-preview.png'}, { id: 12, nome: 'Kit Churrasco-17 Peças', preco: 'R$ 350,95', imagem: 'imagens/Kit-Churrasco10-03-.png'} ]
-        };
+        async function carregarProdutosDaCategoria() {
+            if (!supabase) {
+                console.error("Supabase client não está disponível.");
+                return;
+            }
 
-        window.verDetalhes = function(idProduto) {
-            window.location.href = `produtos.html?id=${idProduto}`;
-        }
-
-        function carregarProdutos() {
             const urlParams = new URLSearchParams(window.location.search);
             const categoria = urlParams.get('categoria');
             const titulo = document.getElementById('categoria-titulo');
             const grid = document.getElementById('produtos-grid');
             
-            if (categoria && produtosPorCategoria[categoria]) {
+            if (!categoria) {
+                titulo.textContent = 'Nenhuma categoria selecionada';
+                return;
+            }
+
+            titulo.textContent = `Carregando produtos de ${categoria}...`;
+
+            const { data: produtos, error } = await supabase
+                .from('produtos')
+                .select('*')
+                .eq('categoria', categoria);
+            
+            if (error) {
+                titulo.textContent = 'Erro ao carregar produtos';
+                console.error(error);
+                return;
+            }
+
+            if (produtos && produtos.length > 0) {
                 titulo.textContent = `Produtos de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
-                grid.innerHTML = produtosPorCategoria[categoria].map(produto => `
+                grid.innerHTML = produtos.map(produto => `
                     <div class="produto-card">
-                        <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/250x200?text=Imagem+Indisponível'">
+                        <img src="${produto.imagem_url}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/250x200?text=Imagem+Indisponível'">
                         <h3>${produto.nome}</h3>
-                        <p class="preco">${produto.preco}</p>
-                        <button class="btn-ver-detalhes" onclick="verDetalhes(${produto.id})">Ver Detalhes</button>
+                        <p class="preco">R$ ${produto.preco}</p>
+                        <button class="btn-ver-detalhes" onclick="verDetalhes('${produto.id_produtos}')">Ver Detalhes</button>
                     </div>
                 `).join('');
             } else {
-                titulo.textContent = 'Categoria não encontrada';
+                titulo.textContent = `Categoria: ${categoria}`;
                 grid.innerHTML = '<p>Nenhum produto encontrado para esta categoria.</p>';
             }
         }
-        carregarProdutos();
+        
+        setTimeout(carregarProdutosDaCategoria, 100);
     }
 
-    // Adicionar em um script global ou em cada página
-document.addEventListener('DOMContentLoaded', () => {
+    // --- ATUALIZAÇÃO DO CONTADOR DO CARRINHO ---
     const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     const totalItens = carrinho.reduce((acc, item) => acc + item.quantity, 0);
     const contador = document.getElementById('cart-count');
     if (contador) {
         contador.textContent = totalItens;
         contador.style.display = totalItens > 0 ? 'inline-block' : 'none';
-    }})
+    }
 });

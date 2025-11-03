@@ -1,13 +1,9 @@
 // js/auth.js
 
-// 1. AQUI ESTÁ A CORREÇÃO PRINCIPAL:
-//    Importamos a constante 'supabase' que foi exportada pelo supabaseClient.js.
+// 1. Importa a constante 'supabase' que foi exportada pelo supabaseClient.js.
 import { supabase } from './supabaseClient.js';
 
-// O restante do seu código permanece o mesmo, pois ele já espera
-// que a variável 'supabase' exista e funcione.
-
-// Função para lidar com o login na página index.html
+// --- LÓGICA DE LOGIN (Página index.html) ---
 const loginForm = document.getElementById('actual-login-form');
 if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
@@ -32,20 +28,21 @@ if (loginForm) {
     });
 }
 
-// Código para o cadastro (cadastro.html)
+// --- LÓGICA DE CADASTRO (Página cadastro.html) ---
 const registrationForm = document.getElementById('registration-form');
 
 if (registrationForm) {
     registrationForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const email = registrationForm.email.value;
-        const password = registrationForm.senha.value;
+        // Captura todos os dados do formulário
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('senha').value;
         const confirmPassword = document.getElementById('confirmar-senha').value;
         const fullName = document.getElementById('nome-completo').value;
-        // Adicionei a captura do telefone para que o trigger funcione
-        const telefone = document.getElementById('telefone').value;
+        const telefone = document.getElementById('telefone').value; // Captura o telefone
 
+        // Validações básicas
         if (password.length < 6) {
             alert('A senha deve ter no mínimo 6 caracteres.');
             return;
@@ -55,13 +52,15 @@ if (registrationForm) {
             return;
         }
 
+        // Envia os dados para o Supabase
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
             options: {
-                // ATUALIZADO: Corresponde ao que o trigger no seu DB espera
+                // CORREÇÃO: Enviando 'full_name' e 'telefone'
+                // A chave 'full_name' deve ser exatamente igual à usada na sua função SQL.
                 data: {
-                    nome_completo: fullName,
+                    full_name: fullName,
                     telefone: telefone
                 }
             }
@@ -69,6 +68,7 @@ if (registrationForm) {
 
         if (error) {
             console.error('Erro no cadastro:', error.message);
+            // CORREÇÃO: A mensagem de erro original agora será exibida
             alert('Ocorreu um erro no cadastro: ' + error.message);
         } else {
             console.log('Usuário registrado:', data.user);

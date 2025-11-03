@@ -90,5 +90,11 @@
 
     <script src="js/script.js"></script>
 
+
+    <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+    window.myCreateSupabaseClient = createClient;
+</script>
+
 </body>
 </html>

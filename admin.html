@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; color: #5a2d82; }
+        form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        input, select, button { padding: 10px; font-size: 1rem; border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #5a2d82; color: white; cursor: pointer; border: none; }
+        button:hover { background-color: #4a1d70; }
+        #admin-panel-section { display: none; } /* O painel começa escondido */
+        .product-list-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        .product-list-item img { width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border-radius: 4px; }
+        .product-list-item .info { flex-grow: 1; }
+        .delete-btn { background-color: #e74c3c; }
+        .logout-btn { background-color: #7f8c8d; position: absolute; top: 20px; right: 20px; }
+        #loading { text-align: center; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- SEÇÃO DE LOGIN -->
+        <section id="admin-login-section">
+            <h1>Login do Administrador</h1>
+            <form id="admin-login-form">
+                <input type="email" id="admin-email" placeholder="E-mail" required>
+                <input type="password" id="admin-password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+
+        <!-- PAINEL DE CONTROLE DO ADMIN (ESCONDIDO POR PADRÃO) -->
+        <section id="admin-panel-section">
+            <button id="logout-btn" class="logout-btn">Sair</button>
+            <h1>Painel de Administração</h1>
+            
+            <h2>Adicionar Novo Produto</h2>
+            <form id="add-product-form">
+                <input type="text" id="product-name" placeholder="Nome do Produto" required>
+                <input type="number" step="0.01" id="product-price" placeholder="Preço (ex: 25.99)" required>
+                <input type="text" id="product-description" placeholder="Descrição" required>
+                <input type="text" id="product-category" placeholder="Categoria (ex: canecas, almofadas)" required>
+                <label for="product-image">Imagem do Produto:</label>
+                <input type="file" id="product-image" accept="image/*" required>
+                <button type="submit">Adicionar Produto</button>
+            </form>
+            <p id="loading">Enviando... por favor, aguarde.</p>
+
+            <h2>Produtos Atuais</h2>
+            <div id="product-list">
+                <!-- A lista de produtos do banco de dados será inserida aqui -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Script do Supabase -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const SUPABASE_URL = 'https://crlcdyiuyqgkyeuiahgb.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // --- DEFINA O SEU E-MAIL DE ADMIN AQUI ---
+        const ADMIN_EMAIL = 'seu-email-de-admin@exemplo.com'; 
+
+        const loginSection = document.getElementById('admin-login-section');
+        const panelSection = document.getElementById('admin-panel-section');
+        const loadingIndicator = document.getElementById('loading');
+
+        // --- FUNÇÕES DE CONTROLE DE UI ---
+        const showLogin = () => {
+            loginSection.style.display = 'block';
+            panelSection.style.display = 'none';
+        };
+
+        const showAdminPanel = () => {
+            loginSection.style.display = 'none';
+            panelSection.style.display = 'block';
+            fetchAndDisplayProducts();
+        };
+
+        // --- LÓGICA DE AUTENTICAÇÃO ---
+        document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+            if (error) alert('Erro no login: ' + error.message);
+            // O onAuthStateChange vai cuidar de mostrar o painel se o login for bem-sucedido
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            await supabase.auth.signOut();
+        });
+
+        // --- VERIFICA O ESTADO DO LOGIN EM TEMPO REAL ---
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (session?.user && session.user.email === ADMIN_EMAIL) {
+                // Usuário é o admin e está logado
+                showAdminPanel();
+            } else {
+                // Usuário não está logado ou não é o admin
+                if (session?.user) {
+                    // Se um usuário não-admin logou, deslogue-o.
+                    alert('Acesso negado. Apenas administradores podem acessar esta página.');
+                    supabase.auth.signOut();
+                }
+                showLogin();
+            }
+        });
+
+        // --- LÓGICA DE PRODUTOS ---
+        const productListContainer = document.getElementById('product-list');
+
+        async function fetchAndDisplayProducts() {
+            const { data: products, error } = await supabase.from('produtos').select('*').order('created_at', { ascending: false });
+            
+            if (error) {
+                console.error('Erro ao buscar produtos:', error);
+                return;
+            }
+
+            productListContainer.innerHTML = ''; // Limpa a lista
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product-list-item';
+                productDiv.innerHTML = `
+                    <img src="${product.imagem_url}" alt="${product.nome}">
+                    <div class="info">
+                        <strong>${product.nome}</strong> (${product.categoria})<br>
+                        <span>R$ ${product.preco}</span>
+                    </div>
+                    <button class="delete-btn" data-id="${product.id_produtos}" data-path="${product.imagem_path}">Remover</button>
+                `;
+                productListContainer.appendChild(productDiv);
+            });
+        }
+
+        // --- ADICIONAR PRODUTO ---
+        document.getElementById('add-product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const nome = form['product-name'].value;
+            const preco = form['product-price'].value;
+            const descricao = form['product-description'].value;
+            const categoria = form['product-category'].value;
+            const imageFile = form['product-image'].files[0];
+
+            if (!imageFile) {
+                alert('Por favor, selecione uma imagem.');
+                return;
+            }
+
+            loadingIndicator.style.display = 'block';
+
+            // 1. Enviar a imagem para o Storage
+            const filePath = `public/${Date.now()}-${imageFile.name}`;
+            const { error: uploadError } = await supabase.storage.from('imagens-produtos').upload(filePath, imageFile);
+
+            if (uploadError) {
+                alert('Erro ao enviar imagem: ' + uploadError.message);
+                loadingIndicator.style.display = 'none';
+                return;
+            }
+
+            // 2. Obter a URL pública da imagem
+            const { data: publicUrlData } = supabase.storage.from('imagens-produtos').getPublicUrl(filePath);
+
+            // 3. Inserir os dados do produto no banco de dados
+            const { error: insertError } = await supabase.from('produtos').insert([{
+                nome: nome,
+                preco: preco,
+                descricao: descricao,
+                categoria: categoria.toLowerCase(), // Salva em minúsculas para facilitar a busca
+                imagem_url: publicUrlData.publicUrl,
+                imagem_path: filePath
+            }]);
+
+            loadingIndicator.style.display = 'none';
+            if (insertError) {
+                alert('Erro ao adicionar produto no banco de dados: ' + insertError.message);
+            } else {
+                alert('Produto adicionado com sucesso!');
+                form.reset();
+                fetchAndDisplayProducts(); // Atualiza a lista
+            }
+        });
+
+        // --- REMOVER PRODUTO (usando event delegation) ---
+        productListContainer.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('delete-btn')) {
+                const productId = e.target.dataset.id;
+                const imagePath = e.target.dataset.path;
+
+                if (confirm('Tem certeza que deseja remover este produto? Esta ação não pode ser desfeita.')) {
+                    // 1. Remover do banco de dados
+                    const { error: dbError } = await supabase.from('produtos').delete().eq('id_produtos', productId);
+                    
+                    if (dbError) {
+                        alert('Erro ao remover produto do banco de dados: ' + dbError.message);
+                        return;
+                    }
+
+                    // 2. Remover a imagem do Storage
+                    const { error: storageError } = await supabase.storage.from('imagens-produtos').remove([imagePath]);
+
+                    if (storageError) {
+                        alert('Produto removido do banco, mas falha ao remover a imagem: ' + storageError.message);
+                    }
+                    
+                    alert('Produto removido com sucesso!');
+                    fetchAndDisplayProducts(); // Atualiza a lista
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
