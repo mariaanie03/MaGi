@@ -60,14 +60,16 @@
 
     <!-- Script do Supabase -->
     <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        // ======================= INÍCIO DA CORREÇÃO =======================
+        // EM VEZ DE CRIAR UM NOVO CLIENTE, AGORA IMPORTAMOS O CLIENTE JÁ EXISTENTE
+        // E QUE JÁ SABE QUE VOCÊ ESTÁ LOGADO!
+        import { supabase } from './js/supabaseClient.js';
+        // ======================== FIM DA CORREÇÃO =========================
 
-        const SUPABASE_URL = 'https://crlcdyiuyqgkyeuiahgb.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNybGNkeWl1eXFna3lldWlhaGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzgyNzUsImV4cCI6MjA2NTc1NDI3NX0.y_rIdqY6ducucO0lTX4KjbxdJsD10V4BImKTKizk6O4';
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // --- DEFINA O SEU E-MAIL DE ADMIN AQUI ---
-        const ADMIN_EMAIL = 'seu-email-de-admin@exemplo.com'; 
+        // --- IMPORTANTE: DEFINA O SEU E-MAIL DE ADMIN AQUI ---
+        // Altere a linha abaixo para o e-mail que você usa para administrar o site.
+        const ADMIN_EMAIL = 'luanakyo4@gmail.com'; 
 
         const loginSection = document.getElementById('admin-login-section');
         const panelSection = document.getElementById('admin-panel-section');
@@ -86,6 +88,7 @@
         };
 
         // --- LÓGICA DE AUTENTICAÇÃO ---
+        // Este formulário agora serve como um "fallback", caso o admin acesse a página diretamente.
         document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('admin-email').value;
@@ -98,6 +101,7 @@
 
         document.getElementById('logout-btn').addEventListener('click', async () => {
             await supabase.auth.signOut();
+            window.location.href = 'index.html'; // Leva de volta para a home ao sair
         });
 
         // --- VERIFICA O ESTADO DO LOGIN EM TEMPO REAL ---
@@ -108,7 +112,6 @@
             } else {
                 // Usuário não está logado ou não é o admin
                 if (session?.user) {
-                    // Se um usuário não-admin logou, deslogue-o.
                     alert('Acesso negado. Apenas administradores podem acessar esta página.');
                     supabase.auth.signOut();
                 }
@@ -120,10 +123,11 @@
         const productListContainer = document.getElementById('product-list');
 
         async function fetchAndDisplayProducts() {
-            const { data: products, error } = await supabase.from('produtos').select('*').order('created_at', { ascending: false });
             
+            const { data: products, error } = await supabase.from('produtos').select('*'); // <--- LINHA CORRIGIDA
             if (error) {
                 console.error('Erro ao buscar produtos:', error);
+                alert('Erro ao buscar produtos: ' + error.message); // Alerta para o admin
                 return;
             }
 
@@ -160,7 +164,6 @@
 
             loadingIndicator.style.display = 'block';
 
-            // 1. Enviar a imagem para o Storage
             const filePath = `public/${Date.now()}-${imageFile.name}`;
             const { error: uploadError } = await supabase.storage.from('imagens-produtos').upload(filePath, imageFile);
 
@@ -170,15 +173,13 @@
                 return;
             }
 
-            // 2. Obter a URL pública da imagem
             const { data: publicUrlData } = supabase.storage.from('imagens-produtos').getPublicUrl(filePath);
 
-            // 3. Inserir os dados do produto no banco de dados
             const { error: insertError } = await supabase.from('produtos').insert([{
                 nome: nome,
                 preco: preco,
                 descricao: descricao,
-                categoria: categoria.toLowerCase(), // Salva em minúsculas para facilitar a busca
+                categoria: categoria.toLowerCase(),
                 imagem_url: publicUrlData.publicUrl,
                 imagem_path: filePath
             }]);
@@ -189,7 +190,7 @@
             } else {
                 alert('Produto adicionado com sucesso!');
                 form.reset();
-                fetchAndDisplayProducts(); // Atualiza a lista
+                fetchAndDisplayProducts();
             }
         });
 
@@ -200,7 +201,6 @@
                 const imagePath = e.target.dataset.path;
 
                 if (confirm('Tem certeza que deseja remover este produto? Esta ação não pode ser desfeita.')) {
-                    // 1. Remover do banco de dados
                     const { error: dbError } = await supabase.from('produtos').delete().eq('id_produtos', productId);
                     
                     if (dbError) {
@@ -208,7 +208,6 @@
                         return;
                     }
 
-                    // 2. Remover a imagem do Storage
                     const { error: storageError } = await supabase.storage.from('imagens-produtos').remove([imagePath]);
 
                     if (storageError) {
@@ -216,7 +215,7 @@
                     }
                     
                     alert('Produto removido com sucesso!');
-                    fetchAndDisplayProducts(); // Atualiza a lista
+                    fetchAndDisplayProducts();
                 }
             }
         });
